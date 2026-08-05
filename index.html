@@ -1155,7 +1155,10 @@ window.addEventListener('load', () => {
   if (isReload) {
     sessionStorage.removeItem('skipSplash');
     sessionStorage.removeItem('scrollPosition');
+    // 强制回到页面顶部，绕过浏览器刷新后自动恢复滚动位置的行为
+    document.documentElement.style.scrollBehavior = 'auto';
     window.scrollTo(0, 0);
+    document.documentElement.style.scrollBehavior = '';
   }
 
   const splash = document.getElementById('splash');
