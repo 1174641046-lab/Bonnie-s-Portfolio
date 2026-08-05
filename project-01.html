@@ -391,6 +391,20 @@ document.querySelectorAll('a[href^="project-"], a[href="index.html"]').forEach(l
     }, 300);
   });
 });
+
+// ============ Home / End 键快速跳转 ============
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) {
+    return;
+  }
+  if (e.key === 'Home') {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+});
 </script>
 
 </body>
