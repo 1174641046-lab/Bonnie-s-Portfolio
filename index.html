@@ -30,6 +30,7 @@ body {
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  cursor: none;
 }
 
 /* ============ 开屏 Splash 动画 ============ */
@@ -256,20 +257,6 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  cursor: none;
-  background: var(--bg);
-}
-
-/* 全屏羽化遮罩 - 暗角效果（保留样式，视频已移除） */
-.hero-vignette {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: calc(100% - 540px);
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-  background: radial-gradient(ellipse 55% 70% at 28% 50%, transparent 0%, transparent 30%, rgba(10,10,10,0.4) 55%, rgba(10,10,10,0.85) 80%, rgba(10,10,10,1) 100%);
 }
 
 /* 自定义光标：绿色填充 + 白色描边箭头 */
@@ -456,7 +443,7 @@ body {
   gap: 60px;
   padding: 60px 0;
   border-bottom: 1px solid #1a1a1a;
-  cursor: pointer;
+  cursor: none;
   transition: background 0.4s ease;
 }
 
@@ -529,6 +516,7 @@ body {
   flex: 1;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 }
 
 .work-img-wrap img {
@@ -640,7 +628,7 @@ body {
   border: 1px solid #2a2a2a;
   border-radius: 100px;
   transition: all 0.3s ease;
-  cursor: default;
+  cursor: none;
 }
 
 .intro-tag:hover {
@@ -902,8 +890,6 @@ body {
 
 <!-- ============ 首屏 ============ -->
 <section class="hero" id="hero">
-  <div class="hero-vignette"></div>
-
   <div class="hero-tag">PORTFOLIO <span>/ 2025</span></div>
 
   <!-- 右侧文字 -->
@@ -1221,6 +1207,18 @@ document.addEventListener('mousemove', (e) => {
 document.addEventListener('mouseleave', () => {
   customCursor.style.opacity = '0';
   cursorGlow.style.opacity = '0';
+});
+
+// 悬停在项目图片上时隐藏自定义光标，显示系统手指指针
+document.querySelectorAll('.work-img-wrap').forEach(wrap => {
+  wrap.addEventListener('mouseenter', () => {
+    customCursor.style.opacity = '0';
+    cursorGlow.style.opacity = '0';
+  });
+  wrap.addEventListener('mouseleave', () => {
+    customCursor.style.opacity = '1';
+    cursorGlow.style.opacity = '1';
+  });
 });
 </script>
 
