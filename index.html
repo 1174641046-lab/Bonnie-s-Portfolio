@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonnie Zhang — 资深活动策划作品集</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0a0a0a;
+  --fg: #f5f5f5;
+  --green: #7ec850;
+  --muted: #888;
+  --radius: 10px;
+  --gap: 4px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ 开屏 Splash 动画 ============ */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 上半屏 */
+.splash-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #5a9e30;
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* 下半屏 */
+.splash-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #5a9e30;
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* 拉开效果 */
+.splash.split .splash-top {
+  transform: translateY(-100%);
+}
+
+.splash.split .splash-bottom {
+  transform: translateY(100%);
+}
+
+/* 文字容器 - 居中 */
+.splash-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+  text-align: center;
+  opacity: 0;
+  animation: splash-fade-in 0.8s ease 0.4s forwards;
+}
+
+@keyframes splash-fade-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.splash-name {
+  font-size: clamp(36px, 5.5vw, 78px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: #ffffff;
+  margin: 0;
+}
+
+.splash-surname {
+  font-size: clamp(11px, 1.4vw, 18px);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  color: #ffffff;
+  opacity: 0.7;
+  margin-top: 7px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+/* ============ 首屏 ============ */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  cursor: none;
+  background: var(--bg);
+}
+
+/* 全屏羽化遮罩 - 暗角效果（保留样式，视频已移除） */
+.hero-vignette {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(100% - 540px);
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(ellipse 55% 70% at 28% 50%, transparent 0%, transparent 30%, rgba(10,10,10,0.4) 55%, rgba(10,10,10,0.85) 80%, rgba(10,10,10,1) 100%);
+}
+
+/* 自定义光标：绿色填充 + 白色描边箭头 */
+.custom-cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  will-change: left, top;
+}
+
+.custom-cursor svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.custom-cursor .cursor-fill {
+  fill: var(--green);
+}
+
+.custom-cursor .cursor-stroke {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+/* 绿色光晕 */
+.cursor-glow {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(126, 200, 80, 0.15) 0%, rgba(126, 200, 80, 0) 70%);
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: left, top;
+  transform: translate(-50%, -50%);
+}
+
+/* ============ 右侧文字区域 ============ */
+.hero-text {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  text-align: right;
+  padding-right: 60px;
+  max-width: 75vw;
+  pointer-events: none;
+}
+
+.hero-name {
+  font-size: clamp(100px, 22vw, 320px);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.82;
+  color: var(--fg);
+  margin: 0;
+}
+
+.hero-surname {
+  font-size: clamp(56px, 11vw, 160px);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--fg);
+  margin-top: 6px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.hero-desc {
+  font-size: clamp(13px, 1.15vw, 16px);
+  color: var(--green);
+  line-height: 1.65;
+  margin-top: 28px;
+  max-width: 480px;
+  margin-left: auto;
+  text-align: right;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* 左上角标签 */
+.hero-tag {
+  position: absolute;
+  left: 60px;
+  top: 50px;
+  z-index: 5;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.hero-tag span {
+  color: var(--green);
+}
+
+/* 滚动提示 */
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  animation: fadeInUp 1s ease 1s both;
+}
+
+.scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+  margin: 12px auto 0;
+  animation: scrollLine 2s ease infinite;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes scrollLine {
+  0%, 100% { transform: scaleY(1); opacity: 0.5; }
+  50% { transform: scaleY(0.3); opacity: 1; }
+}
+
+/* ============ Works 区域（参考 monakadesign.com） ============ */
+.works-section {
+  padding: 120px 60px 60px;
+}
+
+/* Section 顶部元信息 */
+.section-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 80px;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 24px;
+}
+
+.section-label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.section-num {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Works 列表 */
+.works-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* 单个项目 */
+.work-entry {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  padding: 60px 0;
+  border-bottom: 1px solid #1a1a1a;
+  cursor: pointer;
+  transition: background 0.4s ease;
+}
+
+.work-entry:hover {
+  background: rgba(126, 200, 80, 0.02);
+}
+
+/* 奇数项：文字左，图片右 */
+.work-entry:nth-child(odd) {
+  flex-direction: row;
+}
+
+/* 偶数项：图片左，文字右 */
+.work-entry:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* 文字信息区 */
+.work-entry__info {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.work-num {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.work-tag {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.work-cat {
+  font-size: 11px;
+  color: var(--green);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.work-date {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.work-title {
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--fg);
+}
+
+.work-desc {
+  font-size: 14px;
+  color: #999;
+  line-height: 1.6;
+  max-width: 360px;
+}
+
+/* 图片区 */
+.work-img-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.work-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  object-fit: cover;
+  aspect-ratio: 16/10;
+  will-change: transform;
+}
+
+/* 鼠标悬停时图片微缩放 */
+.work-entry:hover .work-img-wrap img {
+  transform: scale(1.03);
+}
+
+/* ============ 自我介绍区域 ============ */
+.intro-section {
+  padding: 120px 60px;
+  background: var(--bg);
+  border-top: 1px solid #1a1a1a;
+}
+
+.intro-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.intro-left {
+  position: sticky;
+  top: 120px;
+}
+
+.intro-label {
+  font-size: 13px;
+  color: var(--green);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.intro-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 60px;
+  color: var(--fg);
+}
+
+.intro-stats {
+  display: flex;
+  gap: 48px;
+  border-top: 1px solid #1a1a1a;
+  padding-top: 40px;
+}
+
+.intro-stat-num {
+  font-size: clamp(36px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.intro-stat-num span {
+  font-size: 0.6em;
+  font-weight: 400;
+}
+
+.intro-stat-label {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.intro-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.intro-para {
+  font-size: 15px;
+  color: #bbb;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+}
+
+.intro-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 32px;
+  border-top: 1px solid #1a1a1a;
+}
+
+.intro-tag {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 8px 18px;
+  border: 1px solid #2a2a2a;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.intro-tag:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* ============ About 区域 ============ */
+.about-section {
+  padding: 120px 60px;
+  display: flex;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-left h2 {
+  font-size: clamp(64px, 10vw, 140px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin-bottom: 0;
+}
+
+.about-left h2 span {
+  color: var(--green);
+}
+
+.about-left {
+  display: flex;
+  align-items: center;
+}
+
+.about-right {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-self: center;
+}
+
+.about-contact-label {
+  font-size: 12px;
+  color: var(--green);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.about-contact-item {
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 20px;
+}
+
+.about-contact-item:last-child {
+  border-bottom: none;
+}
+
+.about-contact-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+.about-contact-value a {
+  color: var(--fg);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.about-contact-value a:hover {
+  color: var(--green);
+}
+
+.about-contact-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ============ 底部 ============ */
+.footer {
+  padding: 60px 60px 30px;
+  text-align: center;
+  border-top: 1px solid #1a1a1a;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: #444;
+  letter-spacing: 0.1em;
+}
+
+/* ============ 响应式 ============ */
+@media (max-width: 1200px) {
+  .work-entry { gap: 40px; }
+  .work-entry__info { flex: 0 0 45%; }
+}
+
+@media (max-width: 1024px) {
+  .hero-text { padding-right: 40px; }
+  .about-container { grid-template-columns: 1fr; gap: 50px; }
+  .work-entry { gap: 32px; padding: 48px 0; }
+  .work-entry__info { flex: 0 0 48%; }
+}
+
+@media (max-width: 768px) {
+  .works-section { padding: 80px 20px 40px; }
+  .section-meta { margin-bottom: 48px; }
+  .work-entry,
+  .work-entry:nth-child(odd),
+  .work-entry:nth-child(even) {
+    flex-direction: column;
+    gap: 24px;
+    padding: 40px 0;
+  }
+  .work-entry__info {
+    flex: 1;
+    width: 100%;
+  }
+  .work-img-wrap {
+    width: 100%;
+  }
+  .work-title { font-size: 24px; }
+  .hero-text { padding-right: 20px; }
+  .hero-tag { left: 20px; top: 30px; }
+  .about-section { padding: 60px 20px; }
+  .footer { padding: 40px 20px 20px; }
+}
+
+/* ============ Thank You 区域 ============ */
+.thankyou-section {
+  padding: 140px 60px 100px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.thankyou-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: clamp(56px, 18vw, 260px);
+  font-weight: 100;
+  letter-spacing: -0.02em;
+  color: var(--green);
+  line-height: 1;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.thankyou-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(120px) scale(0.5);
+  filter: blur(8px);
+}
+
+.thankyou-text.animate span {
+  animation: thankyou-pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 每个字母依次出现 */
+.thankyou-text.animate span:nth-child(1) { animation-delay: 0.0s; }
+.thankyou-text.animate span:nth-child(2) { animation-delay: 0.08s; }
+.thankyou-text.animate span:nth-child(3) { animation-delay: 0.16s; }
+.thankyou-text.animate span:nth-child(4) { animation-delay: 0.24s; }
+.thankyou-text.animate span:nth-child(5) { animation-delay: 0.32s; }
+.thankyou-text.animate span:nth-child(6) { animation-delay: 0.40s; }
+.thankyou-text.animate span:nth-child(7) { animation-delay: 0.48s; }
+.thankyou-text.animate span:nth-child(8) { animation-delay: 0.56s; }
+.thankyou-text.animate span:nth-child(9) { animation-delay: 0.64s; }
+
+.thankyou-space {
+  width: 0.15em;
+  min-width: 0.15em;
+}
+
+@keyframes thankyou-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(120px) scale(0.5);
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1.15);
+    filter: blur(0px);
+  }
+  75% {
+    transform: translateY(8px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* 淡入动画 */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- 自定义光标 -->
+<div class="custom-cursor" id="customCursor">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path class="cursor-fill" d="M4 2 L4 20 L9 15 L12 22 L15 21 L12 14 L19 14 Z"/>
+    <path class="cursor-stroke" d="M4 2 L4 20 L9 15 L12 22 L15 21 L12 14 L19 14 Z"/>
+  </svg>
+</div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- ============ 开屏 Splash ============ -->
+<div class="splash" id="splash">
+  <div class="splash-top"></div>
+  <div class="splash-bottom"></div>
+  <div class="splash-text">
+    <h1 class="splash-name">张宝莹</h1>
+    <h2 class="splash-surname">Bonnie Zhang</h2>
+  </div>
+</div>
+</div>
+
+<!-- ============ 首屏 ============ -->
+<section class="hero" id="hero">
+  <div class="hero-vignette"></div>
+
+  <div class="hero-tag">PORTFOLIO <span>/ 2025</span></div>
+
+  <!-- 右侧文字 -->
+  <div class="hero-text">
+    <h1 class="hero-name">Bonnie</h1>
+    <h2 class="hero-surname">Zhang</h2>
+    <p class="hero-desc">5年大型展会与峰会活动全链路统筹经验，独立完成从前期策划、资源对接到现场执行的全流程落地；具备新媒体运营赋能能力，擅长线上线下联动引流；思维条理清晰，在高压多线程节奏下仍能稳定高效交付。</p>
+  </div>
+
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<!-- ============ 自我介绍 ============ -->
+<section class="intro-section" id="intro">
+  <div class="intro-container">
+    <div class="intro-left reveal">
+      <div class="intro-label">ABOUT ME</div>
+      <h2 class="intro-title">从活动策划到<br>数字化运营</h2>
+      <div class="intro-stats">
+        <div class="intro-stat">
+          <div class="intro-stat-num">5<span>+</span></div>
+          <div class="intro-stat-label">年活动策划经验</div>
+        </div>
+        <div class="intro-stat">
+          <div class="intro-stat-num">1000<span>+</span></div>
+          <div class="intro-stat-label">人级峰会统筹</div>
+        </div>
+        <div class="intro-stat">
+          <div class="intro-stat-num">4</div>
+          <div class="intro-stat-label">年深圳国际家具展</div>
+        </div>
+      </div>
+    </div>
+    <div class="intro-right reveal">
+      <p class="intro-para">我是张宝莹（Bonnie Zhang），一名深耕活动策划领域5年的资深策划人。我的职业生涯始于新媒体运营，后转型专注大型展会、行业峰会与论坛的全链路统筹落地。</p>
+      <p class="intro-para">在深圳市德赛展览有限公司的4年间，我深度参与深圳国际家具展的全周期运营，从100+参展商对接、展馆导视系统优化，到AI客服系统升级（将机器人接管率从35%提升至90%），我始终以数据驱动和系统化思维提升活动效率与用户体验。</p>
+      <p class="intro-para">在美洲星国际物流科技期间，我主导3场1000人级行业峰会及多场招商活动，通过优化投放策略将获客成本降低25%，并建立标准化SOP将到场率从33%提升至50%以上。我擅长在高压多线程环境下稳定输出，运用智能多维表格和可视化看板等AI协作工具高效管理项目。</p>
+      <div class="intro-tags">
+        <span class="intro-tag">活动策划</span>
+        <span class="intro-tag">展会统筹</span>
+        <span class="intro-tag">新媒体运营</span>
+        <span class="intro-tag">视觉设计</span>
+        <span class="intro-tag">数据分析</span>
+        <span class="intro-tag">SOP标准化</span>
+        <span class="intro-tag">AI工具应用</span>
+        <span class="intro-tag">跨部门协同</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Works ============ -->
+<section class="works-section" id="works">
+  <div class="section-meta reveal">
+    <span class="section-label">Works</span>
+    <span class="section-num">001</span>
+  </div>
+
+  <div class="works-list" id="works-list">
+    <!-- 项目由JS动态生成 -->
+  </div>
+</section>
+
+<!-- ============ Contact ============ -->
+<section class="about-section" id="about">
+  <div class="about-container">
+    <div class="about-left reveal">
+      <h2>Contact <span>Me</span></h2>
+    </div>
+    <div class="about-right reveal">
+      <div class="about-contact-item">
+        <div class="about-contact-label">Phone</div>
+        <div class="about-contact-value"><a href="tel:13580109132">135-8010-9132</a></div>
+        <div class="about-contact-sub">微信同号</div>
+      </div>
+      <div class="about-contact-item">
+        <div class="about-contact-label">Email</div>
+        <div class="about-contact-value"><a href="mailto:1174641046@qq.com">1174641046@qq.com</a></div>
+      </div>
+      <div class="about-contact-item">
+        <div class="about-contact-label">Location</div>
+        <div class="about-contact-value">深圳 · 南山</div>
+        <div class="about-contact-sub">可协商入职时间</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Thank You ============ -->
+<section class="thankyou-section">
+  <div class="thankyou-text" id="thankyouText">
+    <span>T</span><span>H</span><span>A</span><span>N</span><span>K</span>
+    <span class="thankyou-space"></span>
+    <span>Y</span><span>O</span><span>U</span>
+  </div>
+</section>
+
+<!-- ============ 底部 ============ -->
+<footer class="footer">
+  <p class="footer-copy">&copy; 2025 BONNIE ZHANG PORTFOLIO</p>
+</footer>
+
+<script>
+// ============ 项目数据 ============
+const projects = [
+  {
+    num: '01',
+    cat: '[活动策划]',
+    date: '2025',
+    name: '千人行业峰会',
+    desc: '3场千人级跨境物流峰会，6500+报名，促成800w成交额',
+    img: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=1200&q=80'
+  },
+  {
+    num: '02',
+    cat: '[展会运营]',
+    date: '2021-2024',
+    name: '深圳国际家具展',
+    desc: '32万m²展馆，700+展商，26万+观众，连续4年主导运营',
+    img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&q=80'
+  },
+  {
+    num: '03',
+    cat: '[论坛沙龙]',
+    date: '2024',
+    name: '行业论坛与沙龙',
+    desc: '主题沙龙、家居论坛、政府接待全流程统筹',
+    img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80'
+  },
+  {
+    num: '04',
+    cat: '[新媒体]',
+    date: '2024',
+    name: '新媒体IP运营',
+    desc: '打造人设IP，线上提升5%报名率，流量转化',
+    img: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&q=80'
+  },
+  {
+    num: '05',
+    cat: '[互动营销]',
+    date: '2024',
+    name: '线上互动活动',
+    desc: '母婴类互动策划，小红书93w曝光，引流1100+人',
+    img: 'https://images.unsplash.com/photo-1559223607-a43c990c692c?w=1200&q=80'
+  },
+  {
+    num: '06',
+    cat: '[体系搭建]',
+    date: '2024',
+    name: '活动SOP体系建设',
+    desc: '标准化SOP流程，到场率33%→50%+，成本降25%',
+    img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80'
+  }
+];
+
+// ============ Works 列表生成 ============
+const worksList = document.getElementById('works-list');
+projects.forEach(p => {
+  const article = document.createElement('article');
+  article.className = 'work-entry reveal';
+  article.innerHTML = `
+    <div class="work-entry__info">
+      <span class="work-num">${p.num}</span>
+      <div class="work-tag">
+        <span class="work-cat">${p.cat}</span>
+        <span class="work-date">${p.date}</span>
+      </div>
+      <h3 class="work-title">${p.name}</h3>
+      <p class="work-desc">${p.desc}</p>
+    </div>
+    <div class="work-img-wrap">
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+    </div>
+  `;
+  worksList.appendChild(article);
+});
+
+// ============ 滚动淡入 ============
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ============ 开屏 Splash 动画 ============
+window.addEventListener('load', () => {
+  const splash = document.getElementById('splash');
+  if (splash) {
+    // 缩放动画 1.2s + 停留 0.4s = 1.6s 后从中间拉开
+    setTimeout(() => {
+      splash.classList.add('split');
+      // 拉开动画 0.8s 后移除 DOM
+      setTimeout(() => {
+        splash.remove();
+      }, 800);
+    }, 1600);
+  }
+});
+
+// ============ Thank You 滚动触发动画 ============
+const thankyouText = document.getElementById('thankyouText');
+if (thankyouText) {
+  const thankyouObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        thankyouText.classList.add('animate');
+        // 触发动画：移除旧 span 再重新添加，强制重绘
+        const spans = thankyouText.querySelectorAll('span');
+        spans.forEach((span, i) => {
+          span.style.animation = 'none';
+          span.offsetHeight; // 强制重排
+          span.style.animation = '';
+        });
+        thankyouObserver.unobserve(thankyouText);
+      }
+    });
+  }, { threshold: 0.3 });
+  thankyouObserver.observe(thankyouText);
+}
+
+// ============ Works 图片鼠标跟随视差交互 ============
+document.querySelectorAll('.work-entry').forEach(entry => {
+  const img = entry.querySelector('.work-img-wrap img');
+  if (!img) return;
+
+  let rafId = null;
+  let targetX = 0, targetY = 0;
+  let currentX = 0, currentY = 0;
+
+  // 鼠标进入：添加平滑过渡
+  entry.addEventListener('mouseenter', () => {
+    img.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+  });
+
+  // 鼠标移动：计算相对位置，生成视差偏移
+  entry.addEventListener('mousemove', (e) => {
+    const rect = entry.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;  // 0 ~ 1
+    const y = (e.clientY - rect.top) / rect.height;   // 0 ~ 1
+
+    // 偏移范围：±12px
+    targetX = (x - 0.5) * 24;
+    targetY = (y - 0.5) * 24;
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(animate);
+    }
+  });
+
+  // 鼠标离开：复位
+  entry.addEventListener('mouseleave', () => {
+    targetX = 0;
+    targetY = 0;
+    img.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+    if (!rafId) {
+      rafId = requestAnimationFrame(animate);
+    }
+  });
+
+  function animate() {
+    // 线性插值，系数 0.08 营造顺滑跟随感
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+
+    img.style.transform = `translate(${currentX}px, ${currentY}px) scale(1.03)`;
+
+    const dist = Math.abs(targetX - currentX) + Math.abs(targetY - currentY);
+    if (dist > 0.01) {
+      rafId = requestAnimationFrame(animate);
+    } else {
+      rafId = null;
+    }
+  }
+});
+
+// ============ 自定义光标 ============
+const customCursor = document.getElementById('customCursor');
+const cursorGlow = document.getElementById('cursorGlow');
+let cursorX = 0, cursorY = 0;
+let glowX = 0, glowY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  cursorX = e.clientX;
+  cursorY = e.clientY;
+  customCursor.style.opacity = '1';
+  cursorGlow.style.opacity = '1';
+  customCursor.style.left = cursorX + 'px';
+  customCursor.style.top = cursorY + 'px';
+  cursorGlow.style.left = cursorX + 'px';
+  cursorGlow.style.top = cursorY + 'px';
+});
+
+document.addEventListener('mouseleave', () => {
+  customCursor.style.opacity = '0';
+  cursorGlow.style.opacity = '0';
+});
+</script>
+
+</body>
+</html>
