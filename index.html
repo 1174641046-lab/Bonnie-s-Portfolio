@@ -1144,6 +1144,14 @@ function wrapChars(element, delayBase) {
 }
 
 window.addEventListener('load', () => {
+  // 检测是否是页面刷新（F5 / Ctrl+R / 刷新按钮），刷新时清除标记重新播放 Splash
+  const navEntry = performance.getEntriesByType('navigation')[0];
+  const isReload = navEntry && navEntry.type === 'reload';
+  if (isReload) {
+    sessionStorage.removeItem('skipSplash');
+    sessionStorage.removeItem('scrollPosition');
+  }
+
   const splash = document.getElementById('splash');
   const skipSplash = sessionStorage.getItem('skipSplash');
   const savedScroll = sessionStorage.getItem('scrollPosition');
