@@ -1145,11 +1145,17 @@ function wrapChars(element, delayBase) {
 
 window.addEventListener('load', () => {
   // 检测是否是页面刷新（F5 / Ctrl+R / 刷新按钮），刷新时清除标记重新播放 Splash
-  const navEntry = performance.getEntriesByType('navigation')[0];
-  const isReload = navEntry && navEntry.type === 'reload';
+  let isReload = false;
+  const entries = performance.getEntriesByType('navigation');
+  if (entries.length > 0 && entries[0].type === 'reload') {
+    isReload = true;
+  } else if (performance.navigation && performance.navigation.type === 1) {
+    isReload = true;
+  }
   if (isReload) {
     sessionStorage.removeItem('skipSplash');
     sessionStorage.removeItem('scrollPosition');
+    window.scrollTo(0, 0);
   }
 
   const splash = document.getElementById('splash');
