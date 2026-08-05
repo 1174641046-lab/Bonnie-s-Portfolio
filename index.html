@@ -164,19 +164,41 @@ body {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  transition: clip-path 0.8s cubic-bezier(0.76, 0, 0.24, 1);
-  clip-path: inset(0 0 0 0);
 }
 
-/* 分裂时从中间收缩 */
-.splash.split .splash-bg-text {
-  clip-path: inset(50% 0 50% 0);
+.splash-bg-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.splash-bg-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* 分裂动画：上半屏向上滑出，下半屏向下滑出 */
+.splash.split .splash-bg-top {
+  transform: translateY(-100%);
+}
+
+.splash.split .splash-bg-bottom {
+  transform: translateY(100%);
 }
 
 .bg-title {
   position: absolute;
   left: 8%;
-  top: 38%;
+  bottom: 5px;
   font-size: clamp(60px, 11vw, 150px);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -189,7 +211,7 @@ body {
 .bg-subtitle {
   position: absolute;
   left: 8%;
-  top: 48%;
+  bottom: -25px;
   font-size: clamp(16px, 2.5vw, 32px);
   font-weight: 300;
   letter-spacing: 0.05em;
@@ -202,7 +224,7 @@ body {
 .bg-big {
   position: absolute;
   right: 1%;
-  bottom: 8%;
+  top: 5px;
   font-size: clamp(120px, 25vw, 350px);
   font-weight: 900;
   letter-spacing: -0.04em;
@@ -210,14 +232,14 @@ body {
   color: #8dd162;
   opacity: 0.25;
   transform: scaleY(1.6);
-  transform-origin: right bottom;
+  transform-origin: right top;
   margin: 0;
 }
 
 .bg-portfolio {
   position: absolute;
   right: 5%;
-  top: 8%;
+  top: 15%;
   font-size: clamp(10px, 1.2vw, 16px);
   font-weight: 400;
   letter-spacing: 0.15em;
@@ -866,10 +888,14 @@ body {
   </div>
   <!-- 底层背景文字 -->
   <div class="splash-bg-text">
-    <h2 class="bg-title">活动策划</h2>
-    <p class="bg-subtitle">Event Planning</p>
-    <h2 class="bg-big">作品集</h2>
-    <p class="bg-portfolio">Portfolio</p>
+    <div class="splash-bg-top">
+      <h2 class="bg-title">活动策划</h2>
+      <p class="bg-subtitle">Event Planning</p>
+      <p class="bg-portfolio">Portfolio</p>
+    </div>
+    <div class="splash-bg-bottom">
+      <h2 class="bg-big">作品集</h2>
+    </div>
   </div>
 </div>
 </div>
