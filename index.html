@@ -517,6 +517,11 @@ body {
   overflow: hidden;
   position: relative;
   cursor: none;
+  transition: box-shadow 0.4s ease;
+}
+
+.work-img-wrap:hover {
+  box-shadow: 0 0 0 3px var(--green), 0 0 20px rgba(126, 200, 80, 0.3);
 }
 
 .work-img-wrap a {
@@ -1119,13 +1124,21 @@ function wrapChars(element, delayBase) {
 }
 
 window.addEventListener('load', () => {
+  const splash = document.getElementById('splash');
+  const isFromProject = document.referrer && document.referrer.includes('project-');
+
+  // 从详情页返回时，直接跳过 Splash
+  if (isFromProject && splash) {
+    splash.remove();
+    return;
+  }
+
   const splashName = document.querySelector('#splashName .splash-name');
   const splashSurname = document.querySelector('#splashSurname .splash-surname');
-  
+
   if (splashName) wrapChars(splashName, 0.4);
   if (splashSurname) wrapChars(splashSurname, 0.5);
-  
-  const splash = document.getElementById('splash');
+
   if (splash) {
     // 逐字动画约 0.4s + 停留 0.4s = 0.8s 后从中间拉开
     setTimeout(() => {
