@@ -14,7 +14,7 @@
 :root {
   --bg: #0a0a0a;
   --fg: #f5f5f5;
-  --green: #388f1b;
+  --green: #7ec850;
   --muted: #888;
   --radius: 10px;
   --gap: 4px;
@@ -49,7 +49,7 @@ body {
   left: 0;
   width: 100%;
   height: 50%;
-  background: #388f1b;
+  background: #5a9e30;
   transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
@@ -60,7 +60,7 @@ body {
   left: 0;
   width: 100%;
   height: 50%;
-  background: #388f1b;
+  background: #5a9e30;
   transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
@@ -204,7 +204,7 @@ body {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1;
-  color: #388f1b;
+  color: #8dd162;
   opacity: 0.3;
   margin: 0;
 }
@@ -217,7 +217,7 @@ body {
   font-weight: 300;
   letter-spacing: 0.05em;
   line-height: 1;
-  color: #388f1b;
+  color: #8dd162;
   opacity: 0.25;
   margin: 0;
 }
@@ -230,7 +230,7 @@ body {
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 0.85;
-  color: #388f1b;
+  color: #8dd162;
   opacity: 0.25;
   transform: scaleY(1.6);
   transform-origin: right top;
@@ -245,7 +245,7 @@ body {
   font-weight: 400;
   letter-spacing: 0.15em;
   line-height: 1;
-  color: #388f1b;
+  color: #8dd162;
   opacity: 0.3;
   margin: 0;
   text-transform: uppercase;
@@ -294,7 +294,7 @@ body {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(56, 143, 27, 0.15) 0%, rgba(56, 143, 27, 0) 70%);
+  background: radial-gradient(circle, rgba(126, 200, 80, 0.15) 0%, rgba(126, 200, 80, 0) 70%);
   z-index: 9998;
   pointer-events: none;
   opacity: 0;
@@ -448,7 +448,7 @@ body {
 }
 
 .work-entry:hover {
-  background: rgba(56, 143, 27, 0.02);
+  background: rgba(126, 200, 80, 0.02);
 }
 
 /* 奇数项：文字左，图片右 */
@@ -516,7 +516,12 @@ body {
   flex: 1;
   overflow: hidden;
   position: relative;
-  cursor: pointer;
+  cursor: none;
+  transition: box-shadow 0.4s ease;
+}
+
+.work-img-wrap:hover {
+  box-shadow: 0 0 0 3px var(--green), 0 0 20px rgba(126, 200, 80, 0.3);
 }
 
 .work-img-wrap img {
@@ -1209,17 +1214,6 @@ document.addEventListener('mouseleave', () => {
   cursorGlow.style.opacity = '0';
 });
 
-// 悬停在项目图片上时隐藏自定义光标，显示系统手指指针
-document.querySelectorAll('.work-img-wrap').forEach(wrap => {
-  wrap.addEventListener('mouseenter', () => {
-    customCursor.style.opacity = '0';
-    cursorGlow.style.opacity = '0';
-  });
-  wrap.addEventListener('mouseleave', () => {
-    customCursor.style.opacity = '1';
-    cursorGlow.style.opacity = '1';
-  });
-});
 </script>
 
 </body>
