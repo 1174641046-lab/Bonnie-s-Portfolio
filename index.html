@@ -380,6 +380,23 @@ body {
   font-weight: 500;
 }
 
+/* 左上角 Logo */
+.hero-logo {
+  position: fixed;
+  left: 30px;
+  top: 25px;
+  width: 44px;
+  height: 44px;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.hero-logo.visible {
+  opacity: 1;
+}
+
 .hero-tag span {
   color: var(--green);
 }
@@ -970,6 +987,7 @@ body.page-exit {
 <!-- ============ 首屏 ============ -->
 <section class="hero" id="hero">
   <div class="hero-glow"></div>
+  <img src="bz-logo.png" alt="BZ Logo" class="hero-logo">
   <div class="hero-tag">PORTFOLIO <span>/ 2026</span></div>
 
   <!-- 右侧文字 -->
@@ -1358,6 +1376,16 @@ document.addEventListener('keydown', (e) => {
   } else if (e.key === 'End') {
     e.preventDefault();
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+});
+
+// ============ Logo 滚动时显示 ============
+const heroLogo = document.querySelector('.hero-logo');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 200) {
+    heroLogo.classList.add('visible');
+  } else {
+    heroLogo.classList.remove('visible');
   }
 });
 
