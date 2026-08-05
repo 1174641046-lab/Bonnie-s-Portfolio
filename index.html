@@ -391,18 +391,20 @@ body {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s ease;
+  border-radius: 10px;
 }
 
 .hero-logo::before {
   content: '';
   position: absolute;
-  top: -8px;
-  left: -8px;
-  width: 24px;
-  height: 24px;
+  top: -12px;
+  left: -12px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(126,200,80,0.5) 0%, rgba(126,200,80,0) 70%);
+  background: radial-gradient(circle, rgba(126,200,80,0.85) 0%, rgba(126,200,80,0.3) 50%, rgba(126,200,80,0) 75%);
   pointer-events: none;
+  z-index: -1;
 }
 
 .hero-logo.visible {
