@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新媒体IP运营 — Bonnie Zhang</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0a;
+  --fg: #f5f5f5;
+  --green: #7ec850;
+  --muted: #888;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+  animation: pageFadeIn 0.4s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  will-change: left, top;
+}
+
+.custom-cursor svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.custom-cursor .cursor-fill {
+  fill: var(--green);
+}
+
+.custom-cursor .cursor-stroke {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(126, 200, 80, 0.15) 0%, rgba(126, 200, 80, 0) 70%);
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: left, top;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pageFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+body.page-exit {
+  animation: pageFadeOut 0.3s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.project-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.back-link {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-link:hover {
+  color: var(--green);
+}
+
+.back-link svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s;
+}
+
+.back-link:hover svg {
+  transform: translateX(-4px);
+}
+
+.project-nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--fg);
+}
+
+.nav-link.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.project-hero {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-image {
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-info {
+  padding: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.project-meta {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 24px;
+}
+
+.project-num {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.project-cat {
+  font-size: 11px;
+  color: var(--green);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.project-date {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  margin-left: auto;
+}
+
+.project-title {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--fg);
+  margin-bottom: 32px;
+}
+
+.project-desc {
+  font-size: 16px;
+  color: #bbb;
+  line-height: 1.85;
+  max-width: 700px;
+  margin-bottom: 48px;
+}
+
+.project-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  border-top: 1px solid #1a1a1a;
+  padding-top: 40px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+}
+
+.project-footer {
+  padding: 40px 60px;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: #444;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .project-header { padding: 0 20px; height: 52px; }
+  .project-image { height: 50vh; }
+  .project-info { padding: 40px 20px; }
+  .project-footer { padding: 24px 20px; }
+  .project-nav { gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="custom-cursor" id="customCursor">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path class="cursor-fill" d="M4 2 L4 20 L9 15 L12 22 L15 21 L12 14 L19 14 Z"/>
+    <path class="cursor-stroke" d="M4 2 L4 20 L9 15 L12 22 L15 21 L12 14 L19 14 Z"/>
+  </svg>
+</div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<header class="project-header">
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    Back
+  </a>
+  <nav class="project-nav">
+    <a href="project-03.html" class="nav-link">Prev</a>
+    <a href="project-05.html" class="nav-link">Next</a>
+  </nav>
+</header>
+
+<main class="project-hero">
+  <div class="project-image">
+    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1600&q=80" alt="新媒体IP运营">
+  </div>
+  
+  <div class="project-info">
+    <div class="project-meta">
+      <span class="project-num">04</span>
+      <span class="project-cat">[新媒体]</span>
+      <span class="project-date">2024</span>
+    </div>
+    
+    <h1 class="project-title">新媒体IP运营</h1>
+    <p class="project-desc">打造活动策划领域的个人IP，通过短视频、图文等多形式内容输出，建立专业人设。运用数据分析工具追踪内容表现，优化选题方向和发布策略。通过线上内容引流，将线上关注度转化为线下活动报名，实现线上线下联动，整体报名率提升5%。建立内容矩阵，形成持续的内容产出机制。</p>
+    
+    <div class="project-stats">
+      <div class="stat-item">
+        <span class="stat-label">报名率提升</span>
+        <span class="stat-value">+5%</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">内容形式</span>
+        <span class="stat-value">短视频/图文</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">核心策略</span>
+        <span class="stat-value">人设IP</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">转化路径</span>
+        <span class="stat-value">线上→线下</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="project-footer">
+  <span class="footer-copy">&copy; 2025 BONNIE ZHANG</span>
+</footer>
+
+<script>
+const customCursor = document.getElementById('customCursor');
+const cursorGlow = document.getElementById('cursorGlow');
+let cursorX = 0, cursorY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  cursorX = e.clientX;
+  cursorY = e.clientY;
+  customCursor.style.opacity = '1';
+  cursorGlow.style.opacity = '1';
+  customCursor.style.left = cursorX + 'px';
+  customCursor.style.top = cursorY + 'px';
+  cursorGlow.style.left = cursorX + 'px';
+  cursorGlow.style.top = cursorY + 'px';
+});
+
+document.addEventListener('mouseleave', () => {
+  customCursor.style.opacity = '0';
+  cursorGlow.style.opacity = '0';
+});
+
+document.querySelectorAll('a[href^="project-"], a[href="index.html"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    document.body.classList.add('page-exit');
+    setTimeout(() => {
+      window.location.href = href;
+    }, 300);
+  });
+});
+</script>
+
+</body>
+</html>
