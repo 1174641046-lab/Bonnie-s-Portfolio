@@ -123,30 +123,6 @@ body.page-exit {
   transform: translateX(-4px);
 }
 
-.project-nav {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
-
-.nav-link {
-  font-size: 13px;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.nav-link:hover {
-  color: var(--fg);
-}
-
-.nav-link.disabled {
-  opacity: 0.3;
-  pointer-events: none;
-}
-
 .project-hero {
   width: 100%;
   min-height: 100vh;
@@ -265,12 +241,54 @@ body.page-exit {
   letter-spacing: 0.1em;
 }
 
+/* 侧箭头导航 */
+.side-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 28px;
+  font-weight: 300;
+  transition: color 0.3s, transform 0.3s;
+  cursor: none;
+}
+
+.side-arrow:hover {
+  color: var(--green);
+}
+
+.side-arrow.prev {
+  left: 40px;
+}
+
+.side-arrow.prev:hover {
+  transform: translateY(-50%) translateX(-4px);
+}
+
+.side-arrow.next {
+  right: 40px;
+}
+
+.side-arrow.next:hover {
+  transform: translateY(-50%) translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .side-arrow { display: none; }
+}
+
 @media (max-width: 768px) {
   .project-header { padding: 0 20px; height: 52px; }
   .project-image { height: 50vh; }
   .project-info { padding: 40px 20px; }
   .project-footer { padding: 24px 20px; }
-  .project-nav { gap: 16px; }
 }
 </style>
 </head>
@@ -292,10 +310,7 @@ body.page-exit {
     </svg>
     Back
   </a>
-  <nav class="project-nav">
-    <a href="project-05.html" class="nav-link">Prev</a>
-    <span class="nav-link disabled">Next</span>
-  </nav>
+
 </header>
 
 <main class="project-hero">
@@ -332,6 +347,8 @@ body.page-exit {
       </div>
     </div>
   </div>
+  <!-- 左侧箭头 -->
+  <a href="project-05.html" class="side-arrow prev">&lt;</a>
 </main>
 
 <footer class="project-footer">
