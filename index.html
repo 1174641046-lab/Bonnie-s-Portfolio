@@ -1125,10 +1125,11 @@ function wrapChars(element, delayBase) {
 
 window.addEventListener('load', () => {
   const splash = document.getElementById('splash');
-  const isFromProject = document.referrer && document.referrer.includes('project-');
+  const skipSplash = sessionStorage.getItem('skipSplash');
 
   // 从详情页返回时，直接跳过 Splash
-  if (isFromProject && splash) {
+  if (skipSplash === 'true' && splash) {
+    sessionStorage.removeItem('skipSplash');
     splash.remove();
     return;
   }

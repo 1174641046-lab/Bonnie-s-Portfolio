@@ -363,6 +363,10 @@ document.querySelectorAll('a[href^="project-"], a[href="index.html"]').forEach(l
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const href = link.getAttribute('href');
+    // 返回首页时标记跳过 Splash
+    if (href === 'index.html') {
+      sessionStorage.setItem('skipSplash', 'true');
+    }
     document.body.classList.add('page-exit');
     setTimeout(() => {
       window.location.href = href;
