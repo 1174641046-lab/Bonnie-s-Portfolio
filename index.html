@@ -573,16 +573,33 @@ body {
 
 .intro-container {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 80px;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
   max-width: 1200px;
   margin: 0 auto;
   align-items: start;
 }
 
-.intro-left {
+.intro-video-wrap {
   position: sticky;
   top: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #111;
+  aspect-ratio: 3/4;
+}
+
+.intro-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .intro-label {
@@ -590,32 +607,31 @@ body {
   color: var(--green);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   font-weight: 500;
 }
 
 .intro-title {
-  font-size: clamp(36px, 5vw, 56px);
+  font-size: clamp(32px, 4vw, 48px);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 60px;
+  line-height: 1.15;
+  margin-bottom: 40px;
   color: var(--fg);
 }
 
 .intro-stats {
   display: flex;
-  gap: 48px;
-  border-top: 1px solid #1a1a1a;
-  padding-top: 40px;
+  gap: 40px;
+  margin-bottom: 40px;
 }
 
 .intro-stat-num {
-  font-size: clamp(36px, 4vw, 48px);
+  font-size: clamp(32px, 3.5vw, 44px);
   font-weight: 700;
   color: var(--green);
   line-height: 1;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .intro-stat-num span {
@@ -624,30 +640,35 @@ body {
 }
 
 .intro-stat-label {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--muted);
   line-height: 1.5;
 }
 
-.intro-right {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.intro-desc {
+  border-top: 1px solid #1a1a1a;
+  padding-top: 32px;
+  margin-bottom: 8px;
 }
 
 .intro-para {
-  font-size: 15px;
+  font-size: 14px;
   color: #bbb;
-  line-height: 1.85;
+  line-height: 1.8;
   letter-spacing: 0.01em;
+  margin-bottom: 16px;
+}
+
+.intro-para:last-child {
+  margin-bottom: 0;
 }
 
 .intro-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-  padding-top: 32px;
+  gap: 8px;
+  margin-top: 24px;
+  padding-top: 24px;
   border-top: 1px solid #1a1a1a;
 }
 
@@ -795,6 +816,9 @@ body {
   .hero-tag { left: 20px; top: 30px; }
   .about-section { padding: 60px 20px; }
   .footer { padding: 40px 20px 20px; }
+  .intro-container { grid-template-columns: 1fr; gap: 40px; }
+  .intro-video-wrap { position: relative; top: 0; aspect-ratio: 4/3; max-height: 50vh; }
+  .intro-section { padding: 80px 20px; }
 }
 
 /* ============ Thank You 区域 ============ */
@@ -955,7 +979,12 @@ body.page-exit {
 <!-- ============ 自我介绍 ============ -->
 <section class="intro-section" id="intro">
   <div class="intro-container">
-    <div class="intro-left reveal">
+    <div class="intro-video-wrap reveal">
+      <video autoplay muted loop playsinline class="intro-video">
+        <source src="about-video.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="intro-content reveal">
       <div class="intro-label">ABOUT ME</div>
       <h2 class="intro-title">从活动策划到<br>数字化运营</h2>
       <div class="intro-stats">
@@ -972,11 +1001,11 @@ body.page-exit {
           <div class="intro-stat-label">年深圳国际家具展</div>
         </div>
       </div>
-    </div>
-    <div class="intro-right reveal">
-      <p class="intro-para">我是张宝莹（Bonnie Zhang），一名深耕活动策划领域5年的资深策划人。我的职业生涯始于新媒体运营，后转型专注大型展会、行业峰会与论坛的全链路统筹落地。</p>
-      <p class="intro-para">在深圳市德赛展览有限公司的4年间，我深度参与深圳国际家具展的全周期运营，从100+参展商对接、展馆导视系统优化，到AI客服系统升级（将机器人接管率从35%提升至90%），我始终以数据驱动和系统化思维提升活动效率与用户体验。</p>
-      <p class="intro-para">在美洲星国际物流科技期间，我主导3场1000人级行业峰会及多场招商活动，通过优化投放策略将获客成本降低25%，并建立标准化SOP将到场率从33%提升至50%以上。我擅长在高压多线程环境下稳定输出，运用智能多维表格和可视化看板等AI协作工具高效管理项目。</p>
+      <div class="intro-desc">
+        <p class="intro-para">我是张宝莹（Bonnie Zhang），一名深耕活动策划领域5年的资深策划人。我的职业生涯始于新媒体运营，后转型专注大型展会、行业峰会与论坛的全链路统筹落地。</p>
+        <p class="intro-para">在深圳市德赛展览有限公司的4年间，我深度参与深圳国际家具展的全周期运营，从100+参展商对接、展馆导视系统优化，到AI客服系统升级（将机器人接管率从35%提升至90%），我始终以数据驱动和系统化思维提升活动效率与用户体验。</p>
+        <p class="intro-para">在美洲星国际物流科技期间，我主导3场1000人级行业峰会及多场招商活动，通过优化投放策略将获客成本降低25%，并建立标准化SOP将到场率从33%提升至50%以上。我擅长在高压多线程环境下稳定输出，运用智能多维表格和可视化看板等AI协作工具高效管理项目。</p>
+      </div>
       <div class="intro-tags">
         <span class="intro-tag">活动策划</span>
         <span class="intro-tag">展会统筹</span>
