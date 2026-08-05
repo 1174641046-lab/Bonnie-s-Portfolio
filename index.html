@@ -1134,7 +1134,10 @@ window.addEventListener('load', () => {
     splash.remove();
 
     if (savedScroll !== null) {
+      // 临时取消平滑滚动，直接定位到之前位置
+      document.documentElement.style.scrollBehavior = 'auto';
       window.scrollTo(0, parseInt(savedScroll));
+      document.documentElement.style.scrollBehavior = '';
       sessionStorage.removeItem('scrollPosition');
     }
     return;
