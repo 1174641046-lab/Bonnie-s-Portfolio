@@ -862,13 +862,24 @@ body {
     width: 100%;
   }
   .work-title { font-size: 24px; }
-  .hero-text { padding-right: 20px; }
+  .hero-text { padding-right: 20px; max-width: 90vw; }
   .hero-tag { left: 20px; top: 30px; }
+  .hero-name { font-size: clamp(64px, 18vw, 120px); }
+  .hero-surname { font-size: clamp(32px, 8vw, 60px); }
+  .hero-desc { font-size: 13px; max-width: 90vw; }
+  .hero-glow { opacity: 1 !important; }
+  .hero-logo { width: 32px; height: 32px; left: 16px; top: 16px; }
   .about-section { padding: 60px 20px; }
   .footer { padding: 40px 20px 20px; }
   .intro-container { grid-template-columns: 1fr; gap: 40px; }
   .intro-video-wrap { position: relative; top: 0; aspect-ratio: 4/3; max-height: 50vh; }
   .intro-section { padding: 80px 20px; }
+  .intro-stats { gap: 24px; }
+  .thankyou-section { padding: 80px 20px 60px; }
+  .thankyou-text { font-size: clamp(40px, 14vw, 100px); justify-content: center; }
+  .custom-cursor { display: none; }
+  .cursor-glow { display: none; }
+  body { cursor: auto; }
 }
 
 /* ============ Thank You 区域 ============ */

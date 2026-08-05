@@ -307,7 +307,17 @@ body.page-exit {
 }
 
 @media (max-width: 768px) {
-  .side-arrow { display: none; }
+  .side-arrow {
+    top: auto;
+    bottom: 24px;
+    transform: none;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+  .side-arrow.prev { left: 20px; }
+  .side-arrow.next { right: 20px; }
+  .side-arrow.prev:hover, .side-arrow.next:hover { transform: none; }
 }
 
 @media (max-width: 768px) {
@@ -315,6 +325,10 @@ body.page-exit {
   .project-image { height: 50vh; }
   .project-info { padding: 40px 20px; }
   .project-footer { padding: 24px 20px; }
+  .custom-cursor { display: none; }
+  .cursor-glow { display: none; }
+  body { cursor: auto; }
+  .project-logo { width: 28px; height: 28px; right: 20px; }
 }
 </style>
 </head>
