@@ -72,26 +72,49 @@ body {
   transform: translateY(100%);
 }
 
-/* 文字容器 - 居中 */
-.splash-text {
+/* 上半屏文字 - 底部居中 */
+.splash-text-top {
   position: absolute;
-  top: 50%;
+  bottom: 20px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   z-index: 10001;
   text-align: center;
   opacity: 0;
-  animation: splash-fade-in 0.8s ease 0.4s forwards;
+  animation: splash-fade-in-top 0.8s ease 0.4s forwards;
 }
 
-@keyframes splash-fade-in {
+/* 下半屏文字 - 顶部居中 */
+.splash-text-bottom {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+  text-align: center;
+  opacity: 0;
+  animation: splash-fade-in-bottom 0.8s ease 0.4s forwards;
+}
+
+@keyframes splash-fade-in-top {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(1.2);
+    transform: translateX(-50%) translateY(20px) scale(1.2);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes splash-fade-in-bottom {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
   }
 }
 
@@ -742,11 +765,15 @@ body {
 
 <!-- ============ 开屏 Splash ============ -->
 <div class="splash" id="splash">
-  <div class="splash-top"></div>
-  <div class="splash-bottom"></div>
-  <div class="splash-text">
-    <h1 class="splash-name">张宝莹</h1>
-    <h2 class="splash-surname">Bonnie Zhang</h2>
+  <div class="splash-top">
+    <div class="splash-text-top">
+      <h1 class="splash-name">张宝莹</h1>
+    </div>
+  </div>
+  <div class="splash-bottom">
+    <div class="splash-text-bottom">
+      <h2 class="splash-surname">Bonnie Zhang</h2>
+    </div>
   </div>
 </div>
 </div>
