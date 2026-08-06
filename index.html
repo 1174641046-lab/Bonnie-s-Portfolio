@@ -369,6 +369,49 @@ body {
   letter-spacing: 0.01em;
 }
 
+/* 首屏鼠标跟随图片动画 */
+.hero-trail-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-trail-img {
+  position: absolute;
+  width: 120px;
+  height: auto;
+  border-radius: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.3);
+  will-change: transform, opacity;
+}
+
+.hero-trail-img.animate-in {
+  animation: trailPop 1.8s ease forwards;
+}
+
+@keyframes trailPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-5deg);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.2) rotate(8deg);
+  }
+}
+
 /* 左上角标签 */
 .hero-tag {
   position: absolute;
@@ -1027,6 +1070,7 @@ body.page-exit {
 <!-- ============ 首屏 ============ -->
 <section class="hero" id="hero">
   <div class="hero-glow"></div>
+  <div class="hero-trail-layer" id="heroTrailLayer"></div>
   <img src="bz-logo.png" alt="BZ Logo" class="hero-logo">
   <div class="hero-tag">PORTFOLIO <span>/ 2026</span></div>
 
@@ -1391,6 +1435,60 @@ document.addEventListener('mouseleave', () => {
   customCursor.style.opacity = '0';
   cursorGlow.style.opacity = '0';
 });
+
+// ============ 首屏鼠标跟随图片动画 ============
+(function () {
+  const heroSection = document.getElementById('hero');
+  const trailLayer = document.getElementById('heroTrailLayer');
+  if (!heroSection || !trailLayer) return;
+
+  // 只在非触屏设备上启用
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  const trailImages = [
+    'hero-hello.png',
+    'hero-welcome.png',
+    'hero-white.png',
+    'hero-bonnie.png',
+    'hero-green1.png',
+    'hero-green2.png',
+    'hero-portfolio.png'
+  ];
+
+  let imgIndex = 0;
+  let lastSpawn = 0;
+  const SPAWN_INTERVAL = 280; // ms 每张图片出现的间隔
+  const TRAIL_LIFETIME = 1800; // ms 单张图片生命周期（与CSS动画一致）
+
+  heroSection.addEventListener('mousemove', (e) => {
+    const now = performance.now();
+    if (now - lastSpawn < SPAWN_INTERVAL) return;
+    lastSpawn = now;
+
+    const rect = heroSection.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const img = document.createElement('img');
+    img.src = trailImages[imgIndex % trailImages.length];
+    img.className = 'hero-trail-img';
+    img.style.left = (x - 60) + 'px';  // 居中偏移
+    img.style.top = (y - 60) + 'px';
+    trailLayer.appendChild(img);
+
+    // 下一帧触发动画
+    requestAnimationFrame(() => {
+      img.classList.add('animate-in');
+    });
+
+    // 动画结束后移除
+    setTimeout(() => {
+      img.remove();
+    }, TRAIL_LIFETIME + 100);
+
+    imgIndex++;
+  });
+})();
 
 // 页面切换：点击项目链接时添加退出动画
 document.querySelectorAll('a[href^="project-"]').forEach(link => {
