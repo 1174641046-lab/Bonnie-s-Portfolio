@@ -1104,7 +1104,7 @@ body.page-exit {
 <section class="intro-section" id="intro">
   <div class="intro-container">
     <div class="intro-video-wrap reveal">
-      <video autoplay muted loop playsinline preload="none" poster="hero-bonnie.png" class="intro-video" id="introVideo">
+      <video autoplay muted loop playsinline preload="metadata" poster="hero-bonnie.png" class="intro-video" id="introVideo">
         <source src="about-video.mp4" type="video/mp4">
       </video>
       <p class="intro-video-caption">Bonnie：(๑˃̵ᴗ˂̵) 只要有1%像我那就是我！</p>
@@ -1485,7 +1485,7 @@ document.addEventListener('mouseleave', () => {
     const videoObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          introVideo.load(); // 开始加载视频
+          introVideo.play(); // 进入视口时播放
           videoObserver.unobserve(entry.target);
         }
       });
