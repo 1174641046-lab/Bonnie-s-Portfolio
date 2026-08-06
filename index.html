@@ -1452,9 +1452,6 @@ document.addEventListener('mouseleave', () => {
   const trailLayer = document.getElementById('heroTrailLayer');
   if (!heroSection || !trailLayer) return;
 
-  // 只在非触屏设备上启用
-  if (window.matchMedia('(hover: none)').matches) return;
-
   const trailImages = [
     'hero-hello.png',
     'hero-welcome.png',
@@ -1470,14 +1467,10 @@ document.addEventListener('mouseleave', () => {
   const SPAWN_INTERVAL = 280; // ms 每张图片出现的间隔
   const TRAIL_LIFETIME = 1800; // ms 单张图片生命周期（与CSS动画一致）
 
-  heroSection.addEventListener('mousemove', (e) => {
+  function spawnImage(x, y) {
     const now = performance.now();
     if (now - lastSpawn < SPAWN_INTERVAL) return;
     lastSpawn = now;
-
-    const rect = heroSection.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
 
     const img = document.createElement('img');
     img.src = trailImages[imgIndex % trailImages.length];
@@ -1497,7 +1490,43 @@ document.addEventListener('mouseleave', () => {
     }, TRAIL_LIFETIME + 100);
 
     imgIndex++;
-  });
+  }
+
+  // 桌面端：鼠标跟随
+  if (!window.matchMedia('(hover: none)').matches) {
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      spawnImage(x, y);
+    });
+  }
+
+  // 手机端：点击/轻触显示一张图片
+  let touchStartY = 0;
+  let touchStartX = 0;
+  heroSection.addEventListener('touchstart', (e) => {
+    if (!window.matchMedia('(hover: none)').matches) return;
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  heroSection.addEventListener('touchend', (e) => {
+    if (!window.matchMedia('(hover: none)').matches) return;
+    
+    const touchEndY = e.changedTouches[0].clientY;
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaY = Math.abs(touchEndY - touchStartY);
+    const deltaX = Math.abs(touchEndX - touchStartX);
+    
+    // 如果滑动距离小于 10px，视为点击（非滚动），显示图片
+    if (deltaY < 10 && deltaX < 10) {
+      const rect = heroSection.getBoundingClientRect();
+      const x = touchEndX - rect.left;
+      const y = touchEndY - rect.top;
+      spawnImage(x, y);
+    }
+  }, { passive: true });
 })();
 
 // 页面切换：点击项目链接时添加退出动画
