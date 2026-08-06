@@ -373,7 +373,7 @@ body {
 .hero-trail-layer {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 6;
   pointer-events: none;
   overflow: hidden;
 }
@@ -917,11 +917,12 @@ body {
   .about-section { padding: 60px 20px; }
   .footer { padding: 40px 20px 20px; }
   .intro-container { grid-template-columns: 1fr; gap: 40px; }
-  .intro-video-wrap { position: relative; top: 0; aspect-ratio: 4/3; max-height: 50vh; }
+  .intro-video-wrap { position: relative; top: 0; width: 100%; aspect-ratio: 3/4; max-height: 60vh; margin-bottom: 20px; }
+  .intro-video { aspect-ratio: 3/4; }
   .intro-section { padding: 80px 20px; }
   .intro-stats { gap: 24px; }
   .thankyou-section { padding: 80px 20px 60px; }
-  .thankyou-text { font-size: clamp(40px, 14vw, 100px); justify-content: center; }
+  .thankyou-text { font-size: clamp(40px, 14vw, 100px); justify-content: center; text-align: center; }
   .custom-cursor { display: none; }
   .cursor-glow { display: none; }
   body { cursor: auto; }
