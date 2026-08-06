@@ -268,6 +268,10 @@ body.page-exit {
   letter-spacing: 0.1em;
 }
 
+.mobile-project-nav {
+  display: none;
+}
+
 /* 侧箭头导航 */
 .side-arrow {
   position: fixed;
@@ -333,6 +337,51 @@ body.page-exit {
   body { cursor: auto; }
   .project-logo { width: 28px; height: 28px; right: 20px; }
 }
+/* 手机端底部项目导航 */
+@media (max-width: 768px) {
+  .mobile-project-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(10, 10, 10, 0.95);
+    border-top: 1px solid rgba(126, 200, 80, 0.3);
+    z-index: 1000;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    backdrop-filter: blur(8px);
+  }
+  .mobile-project-nav a {
+    color: var(--green);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    padding: 8px 16px;
+    border: 1px solid rgba(126, 200, 80, 0.4);
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+  .mobile-project-nav a:hover,
+  .mobile-project-nav a:active {
+    background: rgba(126, 200, 80, 0.2);
+  }
+  .mobile-project-nav a.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    border-color: rgba(126, 200, 80, 0.15);
+  }
+  .mobile-project-nav .nav-counter {
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+  .project-footer {
+    padding-bottom: 80px; /* 为底部导航栏留出空间 */
+  }
+}
 </style>
 </head>
 <body>
@@ -396,7 +445,13 @@ body.page-exit {
   <a href="project-06.html" class="side-arrow next">&gt;</a>
 </main>
 
-<footer class="project-footer">
+  <nav class="mobile-project-nav">
+    <a href="project-04.html" class="nav-prev">← PREV</a>
+    <span class="nav-counter">05 / 06</span>
+    <a href="project-06.html" class="nav-next">NEXT →</a>
+  </nav>
+
+  <footer class="project-footer">
   <span class="footer-copy">&copy; 2026 BONNIE ZHANG &mdash; Do not share my personal information</span>
 </footer>
 

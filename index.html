@@ -916,17 +916,22 @@ body {
   .hero-logo { width: 32px; height: 32px; left: 16px; top: 16px; }
   .about-section { padding: 60px 20px; }
   .footer { padding: 40px 20px 20px; }
-  .intro-container { grid-template-columns: 1fr; gap: 40px; }
+  .intro-container { grid-template-columns: 1fr; gap: 60px; }
   .intro-video-wrap { position: relative; top: 0; width: 100%; aspect-ratio: 3/4; max-height: 50vh; margin-bottom: 40px; }
   .intro-video { aspect-ratio: 3/4; }
   .intro-section { padding: 60px 20px; }
-  .intro-container { grid-template-columns: 1fr; gap: 60px; }
   .intro-stats { gap: 24px; margin-bottom: 32px; }
   .intro-title { margin-bottom: 32px; }
   .intro-desc { gap: 20px; }
-  .intro-video-caption { margin-top: 16px; font-size: 11px; }
+  .intro-video-caption { margin-top: 16px; margin-bottom: 40px; font-size: 11px; }
   .thankyou-section { padding: 80px 20px 60px; }
-  .thankyou-text { font-size: clamp(28px, 10vw, 60px); justify-content: center; text-align: center; flex-wrap: wrap; letter-spacing: normal; }
+  .thankyou-text { 
+    display: block !important; 
+    text-align: center; 
+    font-size: clamp(24px, 8vw, 48px); 
+    letter-spacing: 0.1em; 
+  }
+  .thankyou-text span { display: inline-block; }
   .custom-cursor { display: none; }
   .cursor-glow { display: none; }
   body { cursor: auto; }
