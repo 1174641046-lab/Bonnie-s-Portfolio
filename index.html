@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="dns-prefetch" href="https://images.unsplash.com">
+<link rel="preload" href="bz-logo.png" as="image" fetchpriority="high">
 <title>Bonnie's Portfolio</title>
 <style>
 * {
@@ -1101,7 +1104,7 @@ body.page-exit {
 <section class="intro-section" id="intro">
   <div class="intro-container">
     <div class="intro-video-wrap reveal">
-      <video autoplay muted loop playsinline class="intro-video">
+      <video autoplay muted loop playsinline preload="none" poster="hero-bonnie.png" class="intro-video" id="introVideo">
         <source src="about-video.mp4" type="video/mp4">
       </video>
       <p class="intro-video-caption">Bonnie：(๑˃̵ᴗ˂̵) 只要有1%像我那就是我！</p>
@@ -1264,7 +1267,7 @@ projects.forEach(p => {
     </div>
     <div class="work-img-wrap">
       <a href="project-${p.num}.html">
-        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <img src="${p.img.replace('w=1200', 'w=600')}" alt="${p.name}" loading="lazy" decoding="async" width="600" height="400">
       </a>
     </div>
   `;
@@ -1346,6 +1349,7 @@ window.addEventListener('load', () => {
       // 拉开动画 0.8s 后移除 DOM
       setTimeout(() => {
         splash.remove();
+        preloadTrailImages(); // Splash 结束后预加载首屏动画图片
       }, 800);
     }, 1400);
   }
@@ -1464,6 +1468,30 @@ document.addEventListener('mouseleave', () => {
     'hero-view.png',
     'hero-portfolio.png'
   ];
+  // 延迟预加载：首屏动画图片在 Splash 结束后才开始加载
+  let trailImagesPreloaded = false;
+  function preloadTrailImages() {
+    if (trailImagesPreloaded) return;
+    trailImagesPreloaded = true;
+    trailImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }
+
+  // 视频懒加载：当 About Me 区域进入视口时再加载视频
+  const introVideo = document.getElementById('introVideo');
+  if (introVideo) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          introVideo.load(); // 开始加载视频
+          videoObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+    videoObserver.observe(document.getElementById('intro'));
+  }
 
   let imgIndex = 0;
   let lastSpawn = 0;
