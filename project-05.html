@@ -325,13 +325,20 @@ body.page-exit {
   .side-arrow.prev { left: 20px; }
   .side-arrow.next { right: 20px; }
   .side-arrow.prev:hover, .side-arrow.next:hover { transform: none; }
+}
+
+@media (max-width: 768px) {
   .project-header { padding: 0 20px; height: 52px; }
   .project-image { height: 50vh; }
   .project-info { padding: 40px 20px; }
+  .project-footer { padding: 24px 20px; }
   .custom-cursor { display: none; }
   .cursor-glow { display: none; }
   body { cursor: auto; }
   .project-logo { width: 28px; height: 28px; right: 20px; }
+}
+/* 手机端底部项目导航 */
+@media (max-width: 768px) {
   .mobile-project-nav {
     display: flex;
     position: fixed;
@@ -372,7 +379,7 @@ body.page-exit {
     letter-spacing: 0.05em;
   }
   .project-footer {
-    padding: 24px 20px 80px; /* 底部留出80px给导航栏 */
+    padding-bottom: 80px; /* 为底部导航栏留出空间 */
   }
 }
 </style>
