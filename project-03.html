@@ -232,6 +232,137 @@ body.page-exit {
   gap: 32px;
   border-top: 1px solid #1a1a1a;
   padding-top: 40px;
+  margin-bottom: 80px;
+}
+
+/* ===== 截图展示区 ===== */
+.showcase-section {
+  border-top: 1px solid #1a1a1a;
+  padding-top: 60px;
+}
+
+.showcase-title {
+  font-size: 14px;
+  color: var(--green);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.showcase-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showcase-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(126,200,80,0.08);
+}
+
+.showcase-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showcase-item:hover img {
+  transform: scale(1.05);
+}
+
+/* 第1张图片放大101%并填满容器（无白边），容器保持不变 */
+.showcase-item:nth-child(1) img {
+  transform: scale(1.01);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+
+/* 第2张图片放大101%并填满容器（无白边），容器保持不变 */
+.showcase-item:nth-child(2) img {
+  transform: scale(1.01);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+
+/* 第4张图片放大102%并填满容器（无白边），容器保持不变 */
+.showcase-item:nth-child(4) img {
+  transform: scale(1.02);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+
+/* 第8张图片放大105%并填满容器（无白边），容器保持不变 */
+.showcase-item:nth-child(8) img {
+  transform: scale(1.05);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+
+/* 第9张图片放大101%并填满容器（无白边），容器保持不变 */
+.showcase-item:nth-child(9) img {
+  transform: scale(1.01);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+
+.showcase-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  pointer-events: none;
+  transition: border-color 0.3s;
+}
+
+.showcase-item:hover::after {
+  border-color: rgba(126,200,80,0.2);
+}
+
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .showcase-title {
+    font-size: 12px;
+    margin-bottom: 24px;
+  }
 }
 
 .stat-item {
@@ -438,6 +569,22 @@ body.page-exit {
         <span class="stat-value">线上→线下</span>
       </div>
     </div>
+    
+    <!-- 截图展示区 -->
+    <section class="showcase-section reveal">
+      <h2 class="showcase-title">Content Showcase</h2>
+      <div class="showcase-grid" id="showcaseGrid">
+        <div class="showcase-item" data-index="7"><img src="project03-thumb-8.jpg" alt="时代与握手 - 时代人物" loading="lazy"></div>
+        <div class="showcase-item" data-index="0"><img src="project03-thumb-1.jpg" alt="与时代握手 - 刘传群" loading="lazy"></div>
+        <div class="showcase-item" data-index="8"><img src="project03-thumb-9.jpg" alt="与时代握手 - 付丽华" loading="lazy"></div>
+        <div class="showcase-item" data-index="1"><img src="project03-thumb-2.jpg" alt="珠宝转行做家居" loading="lazy"></div>
+        <div class="showcase-item" data-index="2"><img src="project03-thumb-3.jpg" alt="两小时逛完深圳展" loading="lazy"></div>
+        <div class="showcase-item" data-index="3"><img src="project03-thumb-4.jpg" alt="深圳国补政策全攻略" loading="lazy"></div>
+        <div class="showcase-item" data-index="4"><img src="project03-thumb-5.jpg" alt="2025年软体大牌新商机" loading="lazy"></div>
+        <div class="showcase-item" data-index="5"><img src="project03-thumb-6.jpg" alt="惠州最美家具展厅" loading="lazy"></div>
+        <div class="showcase-item" data-index="6"><img src="project03-thumb-7.jpg" alt="探访广东家居工厂天花板" loading="lazy"></div>
+      </div>
+    </section>
   </div>
   <!-- 左侧箭头 -->
   <a href="project-02.html" class="side-arrow prev">&lt;</a>
@@ -503,6 +650,19 @@ document.addEventListener('keydown', (e) => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }
 });
+
+// ============ Scroll Reveal ============
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+revealElements.forEach(el => revealObserver.observe(el));
 </script>
 
 </body>
