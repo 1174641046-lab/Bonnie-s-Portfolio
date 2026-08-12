@@ -171,12 +171,55 @@ body.page-exit {
       font-size: 14px;
     }
 
-.project-image img {
+/* 封面多图拼贴 + 羽化融合 */
+.project-image-collage {
+  width: 100%;
+  height: 55vh;
+  display: flex;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.collage-photo {
+  position: relative;
+  flex: 1 1 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.collage-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
+
+/* 羽化遮罩 - 每张照片左右边缘渐变淡出，与相邻照片融合 */
+.collage-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(10,10,10,0.55) 0%, transparent 18%),
+    linear-gradient(to left,  rgba(10,10,10,0.55) 0%, transparent 18%);
+}
+
+/* 首张照片只有右侧羽化 */
+.collage-photo:first-child::after {
+  background: linear-gradient(to left, rgba(10,10,10,0.55) 0%, transparent 18%);
+}
+
+/* 最后一张照片只有左侧羽化 */
+.collage-photo:last-child::after {
+  background: linear-gradient(to right, rgba(10,10,10,0.55) 0%, transparent 18%);
+}
+
+/* 桌面端错落高度，打破整齐感 */
+.collage-photo:nth-child(1) { transform: translateY(-3%); }
+.collage-photo:nth-child(2) { transform: translateY(2%); }
+.collage-photo:nth-child(3) { transform: translateY(-1%); }
+.collage-photo:nth-child(4) { transform: translateY(3%); }
 
 .project-info {
   padding: 60px;
@@ -351,6 +394,22 @@ body.page-exit {
   .gallery-item.span-2-rows { grid-row: span 1; }
   body { cursor: auto; }
   .project-logo { width: 28px; height: 28px; right: 20px; }
+  /* 封面拼贴移动端：隐藏错落偏移，减少羽化强度 */
+  .collage-photo:nth-child(1),
+  .collage-photo:nth-child(2),
+  .collage-photo:nth-child(3),
+  .collage-photo:nth-child(4) { transform: none; }
+  .collage-photo::after {
+    background:
+      linear-gradient(to right, rgba(10,10,10,0.4) 0%, transparent 12%),
+      linear-gradient(to left,  rgba(10,10,10,0.4) 0%, transparent 12%);
+  }
+  .collage-photo:first-child::after {
+    background: linear-gradient(to left, rgba(10,10,10,0.4) 0%, transparent 12%);
+  }
+  .collage-photo:last-child::after {
+    background: linear-gradient(to right, rgba(10,10,10,0.4) 0%, transparent 12%);
+  }
 }
 /* 手机端底部项目导航 */
 @media (max-width: 768px) {
@@ -579,8 +638,19 @@ body.page-exit {
 </header>
 
 <main class="project-hero">
-  <div class="project-image">
-    <img src="project01-cover.jpg" alt="千人行业峰会 - 团队合影">
+  <div class="project-image-collage">
+    <div class="collage-photo">
+      <img src="project01-cover.jpg" alt="峰会现场">
+    </div>
+    <div class="collage-photo">
+      <img src="project01-scenes/project-01 项目·现场图/大合照 (2).jpg" alt="团队合影">
+    </div>
+    <div class="collage-photo">
+      <img src="project01-scenes/project-01 项目·现场图/千人峰会 (2).jpg" alt="峰会全景">
+    </div>
+    <div class="collage-photo">
+      <img src="project01-scenes/project-01 项目·现场图/IMG_4572.JPG" alt="峰会舞台">
+    </div>
   </div>
   
   <div class="project-info">
