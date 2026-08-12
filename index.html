@@ -577,12 +577,13 @@ body {
 }
 
 .work-num {
-  font-size: 48px;
+  font-size: 80px;
   color: var(--green);
   letter-spacing: -0.03em;
-  font-weight: 300;
+  font-weight: 700;
   line-height: 1;
   opacity: 0.9;
+  text-shadow: 3px 3px 0px #ffffff;
 }
 
 .work-tag {
@@ -1250,7 +1251,7 @@ projects.forEach(p => {
   article.className = 'work-entry reveal';
   article.innerHTML = `
     <div class="work-entry__info">
-      <span class="work-num">${p.num}</span>
+      <span class="work-num">${p.num}.</span>
       <div class="work-tag">
         <span class="work-cat">${p.cat}</span>
         <span class="work-date">${p.date}</span>
