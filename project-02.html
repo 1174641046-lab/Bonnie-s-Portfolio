@@ -101,7 +101,7 @@ body.page-exit {
 
 .back-link {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--green);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   text-decoration: none;
@@ -112,7 +112,7 @@ body.page-exit {
 }
 
 .back-link:hover {
-  color: var(--green);
+  color: var(--muted);
 }
 
 .back-link svg {
@@ -155,6 +155,49 @@ body.page-exit {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.project-image-collage {
+  width: 100%;
+  height: 55vh;
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+}
+
+.collage-photo {
+  position: relative;
+  flex: 1 1 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.collage-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 羽化遮罩 - 每张照片左右边缘渐变淡出，与相邻照片融合 */
+.collage-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(10,10,10,0.55) 0%, transparent 18%),
+    linear-gradient(to left,  rgba(10,10,10,0.55) 0%, transparent 18%);
+}
+
+/* 首张照片只有右侧羽化 */
+.collage-photo:first-child::after {
+  background: linear-gradient(to left, rgba(10,10,10,0.55) 0%, transparent 18%);
+}
+
+/* 最后一张照片只有左侧羽化 */
+.collage-photo:last-child::after {
+  background: linear-gradient(to right, rgba(10,10,10,0.55) 0%, transparent 18%);
 }
 
 .project-image {
@@ -406,19 +449,22 @@ body.page-exit {
 </header>
 
 <main class="project-hero">
-  <div class="project-image">
-    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1600&q=80" alt="深圳国际家具展">
+  <div class="project-image-collage">
+    <div class="collage-photo"><img src="project02-cover-1.jpg" alt="深圳国际家具展"></div>
+    <div class="collage-photo"><img src="project02-cover-2.jpg" alt="深圳国际家具展"></div>
+    <div class="collage-photo"><img src="project02-cover-3.jpg" alt="深圳国际家具展"></div>
+    <div class="collage-photo"><img src="project02-cover-4.jpg" alt="深圳国际家具展"></div>
   </div>
   
   <div class="project-info">
     <div class="project-meta">
       <span class="project-num">02</span>
-      <span class="project-cat">[展会运营]</span>
-      <span class="project-date">2021-2024</span>
+      <span class="project-cat">[深度参与大型展会]</span>
+      <span class="project-date">2021.11-2025.03</span>
     </div>
     
     <h1 class="project-title">深圳国际家具展</h1>
-    <p class="project-desc">连续4年深度参与深圳国际家具展的全周期运营，负责32万m²展馆的统筹管理工作。从700+展商的展位分配、展馆导视系统优化，到AI客服系统升级（将机器人接管率从35%提升至90%），以数据驱动和系统化思维持续提升展会效率与参展体验。在高压多线程环境下，协调各方资源确保展会顺利开幕。</p>
+    <p class="project-desc">深圳国际家具展作为行业头部展会，有32万m²超大展馆，700+全球展商，年均吸引26万+专业观众，连续4年深度参与前期筹备和现场执行工作。</p>
     
     <div class="project-stats">
       <div class="stat-item">
