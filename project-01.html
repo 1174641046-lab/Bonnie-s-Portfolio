@@ -194,27 +194,6 @@ body.page-exit {
   display: block;
 }
 
-/* 羽化遮罩 - 每张照片左右边缘渐变淡出，与相邻照片融合 */
-.collage-photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(to right, rgba(10,10,10,0.55) 0%, transparent 18%),
-    linear-gradient(to left,  rgba(10,10,10,0.55) 0%, transparent 18%);
-}
-
-/* 首张照片只有右侧羽化 */
-.collage-photo:first-child::after {
-  background: linear-gradient(to left, rgba(10,10,10,0.55) 0%, transparent 18%);
-}
-
-/* 最后一张照片只有左侧羽化 */
-.collage-photo:last-child::after {
-  background: linear-gradient(to right, rgba(10,10,10,0.55) 0%, transparent 18%);
-}
-
 .project-info {
   padding: 60px;
   max-width: 1200px;
