@@ -1260,7 +1260,7 @@ projects.forEach(p => {
       <p class="work-desc">${p.desc}</p>
     </div>
     <div class="work-img-wrap">
-      <a href="project-${p.num}.html">
+      <a href="${p.num === '03' ? 'project-04' : `project-${p.num}`}.html">
         <img src="${p.img.replace('w=1200', 'w=600')}" alt="${p.name}" loading="lazy" decoding="async" width="600" height="400">
       </a>
     </div>
