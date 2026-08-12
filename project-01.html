@@ -454,8 +454,45 @@ body.page-exit {
   gap: 10px;
 }
 
+/* 管理体系板块自定义布局 — 手绘稿对应：
+   第1行：SOP思维导图 (占2列)
+   第2行：多维表格 (占2列)
+   第3-5行左侧：SOP执行表 (占1列3行)
+   第3-5行右侧：流程图、执行分工表、预算明细 (各1列1行) */
+
 .gallery-grid-mgmt {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto auto auto auto;
+}
+
+.gallery-grid-mgmt .mgmt-item:nth-child(1) {
+  grid-column: span 2;
+  grid-row: 1;
+}
+
+.gallery-grid-mgmt .mgmt-item:nth-child(2) {
+  grid-column: span 2;
+  grid-row: 2;
+}
+
+.gallery-grid-mgmt .mgmt-item:nth-child(3) {
+  grid-column: 1;
+  grid-row: 3 / span 3;
+}
+
+.gallery-grid-mgmt .mgmt-item:nth-child(4) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.gallery-grid-mgmt .mgmt-item:nth-child(5) {
+  grid-column: 2;
+  grid-row: 4;
+}
+
+.gallery-grid-mgmt .mgmt-item:nth-child(6) {
+  grid-column: 2;
+  grid-row: 5;
 }
 
 .gallery-grid-scenes {
@@ -589,31 +626,27 @@ body.page-exit {
     <div class="section-label-icon">01</div>
     <span class="section-label-text">项目·管理体系</span>
   </div>
-  <p class="section-desc">从活动策划到执行落地的全流程管理，包括策划方案、流程规划、分工执行、预算控制、SOP标准化及导视系统，形成可复用的项目管理闭环。</p>
+  <p class="section-desc">从活动执行到落地管控的全流程管理，包括流程规划、分工执行、预算控制、SOP标准化及数据管理，形成可复用的项目管理闭环。</p>
   <div class="gallery-grid gallery-grid-mgmt">
     <div class="gallery-item mgmt-item">
       <img src="project01-management/project-01 项目·管理体系图片/SOP思维导图.jpg" alt="SOP思维导图">
       <div class="gallery-caption">SOP思维导图</div>
     </div>
     <div class="gallery-item mgmt-item">
-      <img src="project01-management/project-01 项目·管理体系图片/SOP执行表.jpg" alt="SOP执行表">
-      <div class="gallery-caption">SOP执行表</div>
-    </div>
-    <div class="gallery-item mgmt-item">
       <img src="project01-management/project-01 项目·管理体系图片/多维表格.jpg" alt="多维数据管理">
       <div class="gallery-caption">多维数据管理</div>
     </div>
     <div class="gallery-item mgmt-item">
-      <img src="project01-management/project-01 项目·管理体系图片/执行分工表.jpg" alt="执行分工表">
-      <div class="gallery-caption">执行分工表</div>
-    </div>
-    <div class="gallery-item mgmt-item">
-      <img src="project01-management/project-01 项目·管理体系图片/活动策划.jpg" alt="活动策划方案">
-      <div class="gallery-caption">活动策划方案</div>
+      <img src="project01-management/project-01 项目·管理体系图片/SOP执行表.jpg" alt="SOP执行表">
+      <div class="gallery-caption">SOP执行表</div>
     </div>
     <div class="gallery-item mgmt-item">
       <img src="project01-management/project-01 项目·管理体系图片/流程图.jpg" alt="活动流程规划">
       <div class="gallery-caption">活动流程规划</div>
+    </div>
+    <div class="gallery-item mgmt-item">
+      <img src="project01-management/project-01 项目·管理体系图片/执行分工表.jpg" alt="执行分工表">
+      <div class="gallery-caption">执行分工表</div>
     </div>
     <div class="gallery-item mgmt-item">
       <img src="project01-management/project-01 项目·管理体系图片/预算表2.jpg" alt="预算明细">
