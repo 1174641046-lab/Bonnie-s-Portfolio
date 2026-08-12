@@ -454,15 +454,16 @@ body.page-exit {
   gap: 10px;
 }
 
-/* 管理体系板块自定义布局 — 手绘稿对应：
+/* 管理体系板块自定义布局 — 5张图对应：
    第1行：SOP思维导图 (占2列)
    第2行：多维表格 (占2列)
-   第3-5行左侧：SOP执行表 (占1列3行)
-   第3-5行右侧：流程图、执行分工表、预算明细 (各1列1行) */
+   第3-4行左侧：SOP执行表 (占1列2行)
+   第3行右侧：流程规划 (1列)
+   第4行右侧：预算明细 (1列) */
 
 .gallery-grid-mgmt {
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
 }
 
 .gallery-grid-mgmt .mgmt-item:nth-child(1) {
@@ -477,7 +478,7 @@ body.page-exit {
 
 .gallery-grid-mgmt .mgmt-item:nth-child(3) {
   grid-column: 1;
-  grid-row: 3 / span 3;
+  grid-row: 3 / span 2;
 }
 
 .gallery-grid-mgmt .mgmt-item:nth-child(4) {
@@ -488,11 +489,6 @@ body.page-exit {
 .gallery-grid-mgmt .mgmt-item:nth-child(5) {
   grid-column: 2;
   grid-row: 4;
-}
-
-.gallery-grid-mgmt .mgmt-item:nth-child(6) {
-  grid-column: 2;
-  grid-row: 5;
 }
 
 .gallery-grid-scenes {
@@ -643,10 +639,6 @@ body.page-exit {
     <div class="gallery-item mgmt-item">
       <img src="project01-management/project-01 项目·管理体系图片/流程图.jpg" alt="活动流程规划">
       <div class="gallery-caption">活动流程规划</div>
-    </div>
-    <div class="gallery-item mgmt-item">
-      <img src="project01-management/project-01 项目·管理体系图片/执行分工表.jpg" alt="执行分工表">
-      <div class="gallery-caption">执行分工表</div>
     </div>
     <div class="gallery-item mgmt-item">
       <img src="project01-management/project-01 项目·管理体系图片/预算表2.jpg" alt="预算明细">
