@@ -176,7 +176,7 @@ body.page-exit {
   width: 100%;
   height: 55vh;
   display: flex;
-  gap: 4px;
+  gap: 0;
   overflow: hidden;
 }
 
@@ -214,12 +214,6 @@ body.page-exit {
 .collage-photo:last-child::after {
   background: linear-gradient(to right, rgba(10,10,10,0.55) 0%, transparent 18%);
 }
-
-/* 桌面端错落高度，打破整齐感 */
-.collage-photo:nth-child(1) { transform: translateY(-3%); }
-.collage-photo:nth-child(2) { transform: translateY(2%); }
-.collage-photo:nth-child(3) { transform: translateY(-1%); }
-.collage-photo:nth-child(4) { transform: translateY(3%); }
 
 .project-info {
   padding: 60px;
@@ -640,16 +634,16 @@ body.page-exit {
 <main class="project-hero">
   <div class="project-image-collage">
     <div class="collage-photo">
-      <img src="project01-cover.jpg" alt="峰会现场">
+      <img src="project01-cover-1.jpg" alt="峰会现场">
     </div>
     <div class="collage-photo">
-      <img src="project01-scenes/project-01 项目·现场图/大合照 (2).jpg" alt="团队合影">
+      <img src="project01-cover-2.jpg" alt="团队合影">
     </div>
     <div class="collage-photo">
-      <img src="project01-scenes/project-01 项目·现场图/千人峰会 (2).jpg" alt="峰会全景">
+      <img src="project01-cover-3.png" alt="峰会舞台">
     </div>
     <div class="collage-photo">
-      <img src="project01-scenes/project-01 项目·现场图/IMG_4572.JPG" alt="峰会舞台">
+      <img src="project01-cover-4.jpg" alt="峰会全景">
     </div>
   </div>
   
