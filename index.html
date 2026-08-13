@@ -1008,7 +1008,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 50px 30px 60px;
+  padding: 0 50px 28px 62px;
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   pointer-events: none;
 }
@@ -1027,6 +1027,12 @@ body {
   letter-spacing: -0.02em;
   margin-bottom: 8px;
   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 悬停展开时白色文字上移10px */
+.folder-container:hover .folder-title {
+  transform: translateY(-10px);
 }
 
 .folder-subtitle {
