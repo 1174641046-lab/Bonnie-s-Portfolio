@@ -256,6 +256,137 @@ body {
   text-transform: uppercase;
 }
 
+/* ============ 顶部导航栏 ============ */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: rgba(245, 245, 245, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 50px;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  max-width: 90vw;
+  width: auto;
+  min-width: 700px;
+}
+
+.navbar.scrolled {
+  background: rgba(245, 245, 245, 0.98);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* 左侧 Logo 区域 */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-brand img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav-brand span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: 0.08em;
+}
+
+/* 中间导航菜单 */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  white-space: nowrap;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #1a1a1a;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.nav-link.active {
+  background: #1a1a1a;
+  color: #f5f5f5;
+}
+
+/* 右侧简历按钮 */
+.nav-resume {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  background: transparent;
+}
+
+.nav-resume:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #1a1a1a;
+}
+
+.nav-resume svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* 移动端导航 */
+@media (max-width: 768px) {
+  .navbar {
+    top: 12px;
+    padding: 8px 16px;
+    gap: 16px;
+    min-width: auto;
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+  }
+  .nav-menu {
+    display: none;
+  }
+  .nav-brand span {
+    display: none;
+  }
+}
+
 /* ============ 首屏 ============ */
 .hero {
   position: relative;
@@ -1248,6 +1379,30 @@ body.page-exit {
 </div>
 <div class="cursor-glow" id="cursorGlow"></div>
 
+<!-- ============ 顶部导航栏 ============ -->
+<nav class="navbar" id="navbar">
+  <a href="#hero" class="nav-brand" data-section="hero">
+    <img src="bz-logo.png" alt="BZ Logo">
+    <span>PORTFOLIO</span>
+  </a>
+  <div class="nav-menu">
+    <a href="#intro" class="nav-link active" data-section="intro">关于我</a>
+    <a href="#works" class="nav-link" data-section="works">教育背景</a>
+    <a href="#works" class="nav-link" data-section="works">工作经历</a>
+    <a href="#works" class="nav-link" data-section="works">个人作品</a>
+    <a href="#thankyou" class="nav-link" data-section="thankyou">技能与爱好</a>
+    <a href="#thankyou" class="nav-link" data-section="thankyou">联系我</a>
+  </div>
+  <a href="#" class="nav-resume" title="下载简历">
+    <span>简历.pdf</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+      <polyline points="15 3 21 3 21 9"/>
+      <line x1="10" y1="14" x2="21" y2="3"/>
+    </svg>
+  </a>
+</nav>
+
 <!-- ============ 开屏 Splash ============ -->
 <div class="splash" id="splash">
   <div class="splash-top">
@@ -1383,7 +1538,7 @@ body.page-exit {
 </section>
 
 
-<section class="thankyou-section">
+<section class="thankyou-section" id="thankyou">
   <div class="thankyou-glow"></div>
   <div class="thankyou-left">
     <p>下一段经历，</p>
@@ -1787,6 +1942,61 @@ document.addEventListener('keydown', (e) => {
     e.preventDefault();
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }
+});
+
+// ============ 导航栏滚动高亮与样式变化 ============
+const navbar = document.getElementById('navbar');
+const navLinks = document.querySelectorAll('.nav-link');
+const navBrand = document.querySelector('.nav-brand');
+const sections = document.querySelectorAll('section[id]');
+
+// 滚动时改变导航栏背景
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+// 点击导航项平滑滚动
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+// 点击Logo回到顶部
+if (navBrand) {
+  navBrand.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// 滚动时高亮当前区域
+window.addEventListener('scroll', () => {
+  const scrollPosition = window.scrollY + 300;
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const sectionId = section.getAttribute('id');
+    
+    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === sectionId) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
 });
 
 // ============ Logo 滚动时显示 ============
