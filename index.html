@@ -1018,8 +1018,14 @@ body {
   .thankyou-section { 
     padding: 80px 20px 60px; 
     flex-direction: column;
-    gap: 0;
+    gap: 32px;
     align-items: flex-start;
+  }
+  .thankyou-right {
+    width: 100%;
+  }
+  .thankyou-contact {
+    width: 100%;
   }
   .thankyou-left p { font-size: clamp(24px, 8vw, 48px); }
   .thankyou-text { 
@@ -1043,10 +1049,10 @@ body {
   padding: 140px 60px 100px;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 0;
+  gap: 40px;
 }
 
 .thankyou-left {
@@ -1121,7 +1127,52 @@ body {
   }
 }
 
-/* 淡入动画 */
+.thankyou-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.thankyou-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.thankyou-contact-item {
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 16px;
+}
+
+.thankyou-contact-item:last-child {
+  border-bottom: none;
+}
+
+.thankyou-contact-label {
+  font-size: 11px;
+  color: var(--green);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.thankyou-contact-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+.thankyou-contact-value a {
+  color: var(--fg);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.thankyou-contact-value a:hover {
+  color: var(--green);
+}
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -1298,39 +1349,32 @@ body.page-exit {
   </div>
 </section>
 
-<!-- ============ Contact ============ -->
-<section class="about-section" id="about">
-  <div class="about-container">
-    <div class="about-left reveal">
-      <h2>Contact <span>Me</span></h2>
-    </div>
-    <div class="about-right reveal">
-      <div class="about-contact-item">
-        <div class="about-contact-label">Phone</div>
-        <div class="about-contact-value"><a href="tel:13580109132">135 8010 9132</a></div>
-      </div>
-      <div class="about-contact-item">
-        <div class="about-contact-label">Email</div>
-        <div class="about-contact-value"><a href="mailto:1174641046@qq.com">1174641046@qq.com</a></div>
-      </div>
-      <div class="about-contact-item">
-        <div class="about-contact-label">Location</div>
-        <div class="about-contact-value">深圳 · 南山</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============ Thank You ============ -->
 <section class="thankyou-section">
   <div class="thankyou-left">
     <p>下一段经历，</p>
     <p>期待一起创建！</p>
   </div>
-  <div class="thankyou-text" id="thankyouText">
-    <span>T</span><span>H</span><span>A</span><span>N</span><span>K</span>
-    <span class="thankyou-space"></span>
-    <span>Y</span><span>O</span><span>U</span>
+  <div class="thankyou-right">
+    <div class="thankyou-text" id="thankyouText">
+      <span>T</span><span>H</span><span>A</span><span>N</span><span>K</span>
+      <span class="thankyou-space"></span>
+      <span>Y</span><span>O</span><span>U</span>
+    </div>
+    <div class="thankyou-contact">
+      <div class="thankyou-contact-item">
+        <div class="thankyou-contact-label">Phone</div>
+        <div class="thankyou-contact-value"><a href="tel:13580109132">135 8010 9132</a></div>
+      </div>
+      <div class="thankyou-contact-item">
+        <div class="thankyou-contact-label">Email</div>
+        <div class="thankyou-contact-value"><a href="mailto:1174641046@qq.com">1174641046@qq.com</a></div>
+      </div>
+      <div class="thankyou-contact-item">
+        <div class="thankyou-contact-label">Location</div>
+        <div class="thankyou-contact-value">深圳 · 南山</div>
+      </div>
+    </div>
   </div>
 </section>
 
