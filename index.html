@@ -943,11 +943,16 @@ body {
   .intro-title { margin-bottom: 32px; }
   .intro-desc { gap: 20px; }
   .intro-video-caption { margin-top: 16px; margin-bottom: 40px; font-size: 11px; }
-  .thankyou-section { padding: 80px 20px 60px; }
+  .thankyou-section { 
+    padding: 80px 20px 60px; 
+    flex-direction: column;
+    gap: 32px;
+  }
+  .thankyou-left p { font-size: 14px; }
   .thankyou-text { 
     display: block !important; 
     text-align: center; 
-    font-size: clamp(24px, 8vw, 48px); 
+    font-size: clamp(32px, 10vw, 64px); 
     letter-spacing: 0.1em; 
     width: auto;
     margin: 0 auto;
@@ -964,21 +969,33 @@ body {
   padding: 140px 60px 100px;
   overflow: hidden;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thankyou-left {
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
+  gap: 8px;
+}
+
+.thankyou-left p {
+  font-size: 16px;
+  color: #aaa;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .thankyou-text {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  font-size: clamp(56px, 18vw, 260px);
+  justify-content: flex-end;
+  font-size: clamp(40px, 10vw, 140px);
   font-weight: 100;
   letter-spacing: -0.02em;
   color: var(--green);
   line-height: 1;
-  width: 100%;
   text-transform: uppercase;
 }
 
@@ -1200,6 +1217,10 @@ body.page-exit {
 
 <!-- ============ Thank You ============ -->
 <section class="thankyou-section">
+  <div class="thankyou-left">
+    <p>下一段经历，</p>
+    <p>期待一起创建！</p>
+  </div>
   <div class="thankyou-text" id="thankyouText">
     <span>T</span><span>H</span><span>A</span><span>N</span><span>K</span>
     <span class="thankyou-space"></span>
