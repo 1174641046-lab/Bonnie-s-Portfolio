@@ -1008,7 +1008,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 50px 32px 68px;
+  padding: 0 50px 35px 68px;
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   pointer-events: none;
 }
@@ -1030,9 +1030,9 @@ body {
   transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* 悬停展开时白色文字上移10px */
+/* 悬停展开时白色文字再上移15px（从35px位置到50px效果） */
 .folder-container:hover .folder-title {
-  transform: translateY(-10px);
+  transform: translateY(-15px);
 }
 
 .folder-subtitle {
