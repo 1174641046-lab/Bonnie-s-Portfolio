@@ -870,10 +870,10 @@ body {
 .intro-col .skill-cloud {
   flex: 1;
   min-height: 0;
-  align-content: center;
   justify-content: center;
-  gap: 20px 24px;
-  padding: 32px 28px;
+  padding: 32px 24px;
+  gap: 16px;
+  align-items: center;
 }
 
 .intro-video-wrap {
@@ -917,21 +917,23 @@ body {
 
 .skill-cloud {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 20px 24px;
-  padding: 32px 28px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 24px;
   background: rgba(10, 10, 10, 0.5);
   border: 0.5px solid #1a1a1a;
   border-radius: 12px;
   position: relative;
-  align-content: center;
-  justify-content: center;
   min-height: 0;
 }
 
-.skill-cloud-row {
-  display: none;
+.cloud-row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 12px;
 }
 
 .cloud-tag {
@@ -1592,21 +1594,33 @@ body.page-exit {
   <div class="intro-col reveal">
     <div class="skill-cloud-section">
       <div class="skill-cloud">
-        <span class="cloud-tag tag-xl">飞书多维表格王者</span>
-        <span class="cloud-tag tag-lg">Office全家桶</span>
-        <span class="cloud-tag tag-lg">项目管理</span>
-        <span class="cloud-tag tag-md">数据可视化</span>
-        <span class="cloud-tag tag-lg">供应商驯兽师</span>
-        <span class="cloud-tag tag-md">预算刺客</span>
-        <span class="cloud-tag tag-lg">现场控场王</span>
-        <span class="cloud-tag tag-md">PS修图魔法师</span>
-        <span class="cloud-tag tag-sm">PR剪辑特种兵</span>
-        <span class="cloud-tag tag-md">SOP制造机</span>
-        <span class="cloud-tag tag-sm">剪映快剪达人</span>
-        <span class="cloud-tag tag-sm">英语CET-4</span>
-        <span class="cloud-tag tag-md">普通话</span>
-        <span class="cloud-tag tag-sm">粤语</span>
-        <span class="cloud-tag tag-sm">C1驾照</span>
+        <div class="cloud-row"><span class="cloud-tag tag-xl">飞书多维表格王者</span></div>
+        <div class="cloud-row">
+          <span class="cloud-tag tag-lg">Office全家桶</span>
+          <span class="cloud-tag tag-lg">项目管理</span>
+        </div>
+        <div class="cloud-row">
+          <span class="cloud-tag tag-md">数据可视化</span>
+          <span class="cloud-tag tag-lg">供应商驯兽师</span>
+        </div>
+        <div class="cloud-row">
+          <span class="cloud-tag tag-md">预算刺客</span>
+          <span class="cloud-tag tag-lg">现场控场王</span>
+        </div>
+        <div class="cloud-row">
+          <span class="cloud-tag tag-md">PS修图魔法师</span>
+          <span class="cloud-tag tag-sm">PR剪辑特种兵</span>
+        </div>
+        <div class="cloud-row">
+          <span class="cloud-tag tag-md">SOP制造机</span>
+          <span class="cloud-tag tag-sm">剪映快剪达人</span>
+        </div>
+        <div class="cloud-row">
+          <span class="cloud-tag tag-sm">英语CET-4</span>
+          <span class="cloud-tag tag-md">普通话</span>
+          <span class="cloud-tag tag-sm">粤语</span>
+        </div>
+        <div class="cloud-row"><span class="cloud-tag tag-sm">C1驾照</span></div>
       </div>
     </div>
   </div>
