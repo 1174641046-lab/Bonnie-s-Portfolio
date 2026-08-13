@@ -946,19 +946,19 @@ body {
   .thankyou-section { 
     padding: 80px 20px 60px; 
     flex-direction: column;
-    gap: 32px;
+    gap: 0;
     align-items: flex-start;
   }
   .thankyou-left p { font-size: clamp(24px, 8vw, 48px); }
   .thankyou-text { 
     display: block !important; 
-    text-align: center; 
-    font-size: clamp(28px, 9vw, 48px); 
+    text-align: left; 
+    font-size: clamp(24px, 8vw, 48px); 
     letter-spacing: 0.1em; 
     width: auto;
-    margin: 0 auto;
+    margin: 0;
     line-height: 1.15;
-    opacity: 0.5;
+    opacity: 1;
   }
   .thankyou-text span { display: inline-block; }
   .custom-cursor { display: none; }
@@ -971,9 +971,10 @@ body {
   padding: 140px 60px 100px;
   overflow: hidden;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-start;
+  gap: 0;
 }
 
 .thankyou-left {
@@ -991,16 +992,13 @@ body {
 }
 
 .thankyou-text {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  font-size: clamp(40px, 9vw, 120px);
+  font-size: clamp(36px, 12vw, 150px);
   font-weight: 100;
   letter-spacing: -0.02em;
   color: var(--green);
   line-height: 1;
   text-transform: uppercase;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .thankyou-text span {
