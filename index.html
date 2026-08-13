@@ -787,6 +787,78 @@ body {
   color: var(--green);
 }
 
+/* Skills Section */
+.skills-section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skill-category {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skill-category-title {
+  font-size: 11px;
+  color: var(--green);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.skill-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  padding: 6px 14px;
+  border: 1px solid #2a2a2a;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: none;
+}
+
+.skill-tag:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.skill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.icon-office {
+  background: #2B579A;
+}
+
+.icon-design {
+  background: #31A8FF;
+}
+
+.icon-video {
+  background: #9999FF;
+}
+
 /* ============ About 区域 ============ */
 .about-section {
   padding: 120px 60px;
@@ -1172,15 +1244,48 @@ body.page-exit {
         <p class="intro-para">在深圳市德赛展览有限公司的4年间，我深度参与深圳国际家具展的全周期运营，从100+参展商对接、展馆导视系统优化，到AI客服系统升级（将机器人接管率从35%提升至90%），<b>我始终在用系统化思维提升工作效率与用户体验，并在大型展会的现场执行中提升了突发事件应急处理的能力。</b></p>
         <p class="intro-para">在美洲星国际物流科技公司期间，我主导3场1000人级行业峰会及多场招商活动，通过优化投放策略将获客成本降低25%，并建立标准化SOP将到场率从33%提升至50%以上。<b>我擅长在高压多线程环境下稳定输出，运用智能多维表格和可视化看板等AI协作工具高效管理项目。</b></p>
       </div>
-      <div class="intro-tags">
-        <span class="intro-tag">活动策划</span>
-        <span class="intro-tag">展会统筹</span>
-        <span class="intro-tag">新媒体运营</span>
-        <span class="intro-tag">视觉设计</span>
-        <span class="intro-tag">数据分析</span>
-        <span class="intro-tag">SOP标准化</span>
-        <span class="intro-tag">AI工具应用</span>
-        <span class="intro-tag">跨部门协同</span>
+      <div class="skills-section">
+        <div class="skill-category">
+          <div class="skill-category-title">办公技能</div>
+          <div class="skill-items">
+            <span class="skill-tag"><span class="skill-icon icon-office">W</span><span class="skill-name">Word</span></span>
+            <span class="skill-tag"><span class="skill-icon icon-office">X</span><span class="skill-name">Excel</span></span>
+            <span class="skill-tag"><span class="skill-icon icon-office">P</span><span class="skill-name">PPT</span></span>
+            <span class="skill-tag"><span class="skill-icon icon-design">Ps</span><span class="skill-name">PS</span></span>
+            <span class="skill-tag"><span class="skill-icon icon-video">Pr</span><span class="skill-name">PR</span></span>
+            <span class="skill-tag"><span class="skill-icon icon-video">剪</span><span class="skill-name">剪映</span></span>
+            <span class="skill-tag"><span class="skill-icon icon-design">Ai</span><span class="skill-name">AI</span></span>
+            <span class="skill-tag"><span class="skill-icon icon-design">Can</span><span class="skill-name">Canva</span></span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">专业技能</div>
+          <div class="skill-items">
+            <span class="skill-tag"><span class="skill-name">飞书多维表格</span></span>
+            <span class="skill-tag"><span class="skill-name">数据可视化</span></span>
+            <span class="skill-tag"><span class="skill-name">ChatGPT/Claude</span></span>
+            <span class="skill-tag"><span class="skill-name">项目管理</span></span>
+            <span class="skill-tag"><span class="skill-name">供应商管理</span></span>
+            <span class="skill-tag"><span class="skill-name">预算管控</span></span>
+            <span class="skill-tag"><span class="skill-name">现场执行</span></span>
+            <span class="skill-tag"><span class="skill-name">SOP制定</span></span>
+            <span class="skill-tag"><span class="skill-name">舆情监测</span></span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">语言技能</div>
+          <div class="skill-items">
+            <span class="skill-tag"><span class="skill-name">英语 CET-4</span></span>
+            <span class="skill-tag"><span class="skill-name">普通话</span></span>
+            <span class="skill-tag"><span class="skill-name">粤语</span></span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">其他</div>
+          <div class="skill-items">
+            <span class="skill-tag"><span class="skill-name">C1驾照</span></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
