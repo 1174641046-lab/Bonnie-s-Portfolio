@@ -845,11 +845,10 @@ body {
 }
 
 .intro-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 40px;
-  max-width: none;
+  display: grid;
+  grid-template-columns: 0.7fr 1.0fr 1fr;
+  gap: 60px;
+  max-width: 1400px;
   margin: 0 auto;
   align-items: stretch;
 }
@@ -858,8 +857,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  width: 632px;
-  flex-shrink: 0;
 }
 
 .intro-col .skill-cloud-section {
@@ -1305,8 +1302,8 @@ body {
   .hero-logo { width: 32px; height: 32px; left: 16px; top: 16px; }
   .about-section { padding: 60px 20px; }
   .footer { padding: 40px 20px 20px; }
-  .intro-container { flex-direction: column; align-items: center; gap: 60px; }
-  .intro-col { width: 100%; max-width: 632px; }
+  .intro-container { grid-template-columns: 1fr; gap: 60px; }
+  .intro-col { width: 100%; }
   .intro-video-wrap { position: relative; top: 0; width: 100%; aspect-ratio: 3/4; max-height: 50vh; margin-bottom: 40px; }
   .intro-video { aspect-ratio: 3/4; }
   .intro-section { padding: 60px 20px; }
