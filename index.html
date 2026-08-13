@@ -259,85 +259,103 @@ body {
 /* ============ 顶部导航栏 ============ */
 .navbar {
   position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  background: rgba(245, 245, 245, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 50px;
-  padding: 10px 24px;
+  background: transparent;
+  padding: 24px 40px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  justify-content: flex-end;
+  gap: 8px;
   transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
-  max-width: 90vw;
-  width: auto;
-  min-width: 700px;
 }
 
 .navbar.scrolled {
-  background: rgba(245, 245, 245, 0.98);
-  border-color: rgba(0, 0, 0, 0.12);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-}
-
-/* 左侧 Logo 区域 */
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
-.nav-brand img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.nav-brand span {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1a1a1a;
-  letter-spacing: 0.08em;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 16px 40px;
 }
 
 /* 中间导航菜单 */
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 4px;
-  flex: 1;
-  justify-content: center;
+  gap: 8px;
 }
 
 .nav-link {
   padding: 8px 16px;
-  border-radius: 20px;
+  border-radius: 6px;
   font-size: 13px;
-  font-weight: 500;
-  color: #555;
+  font-weight: 400;
+  color: var(--muted);
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
   white-space: nowrap;
   position: relative;
+  letter-spacing: 0.02em;
 }
 
 .nav-link:hover {
-  color: #1a1a1a;
-  background: rgba(0, 0, 0, 0.04);
+  color: var(--fg);
 }
 
 .nav-link.active {
-  background: #1a1a1a;
-  color: #f5f5f5;
+  color: var(--green);
+}
+
+/* 项目经历下拉菜单 */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(126, 200, 80, 0.15);
+  border-radius: 12px;
+  padding: 8px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  z-index: 1001;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-dropdown-item:hover {
+  color: var(--green);
+  background: rgba(126, 200, 80, 0.08);
+}
+
+.nav-dropdown-item .dd-num {
+  color: var(--green);
+  margin-right: 8px;
+  font-weight: 600;
 }
 
 /* 右侧简历按钮 */
@@ -346,22 +364,21 @@ body {
   align-items: center;
   gap: 6px;
   padding: 8px 16px;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(126, 200, 80, 0.3);
   font-size: 12px;
-  font-weight: 500;
-  color: #555;
+  font-weight: 400;
+  color: var(--green);
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  flex-shrink: 0;
   background: transparent;
+  margin-left: 16px;
 }
 
 .nav-resume:hover {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.15);
-  color: #1a1a1a;
+  background: rgba(126, 200, 80, 0.1);
+  border-color: rgba(126, 200, 80, 0.5);
 }
 
 .nav-resume svg {
@@ -372,18 +389,25 @@ body {
 /* 移动端导航 */
 @media (max-width: 768px) {
   .navbar {
-    top: 12px;
-    padding: 8px 16px;
-    gap: 16px;
-    min-width: auto;
-    width: calc(100vw - 32px);
-    max-width: calc(100vw - 32px);
+    padding: 16px 20px;
+    justify-content: center;
+  }
+  .navbar.scrolled {
+    padding: 12px 20px;
   }
   .nav-menu {
-    display: none;
+    gap: 4px;
   }
-  .nav-brand span {
-    display: none;
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .nav-resume {
+    margin-left: 8px;
+    padding: 6px 12px;
+  }
+  .nav-dropdown-menu {
+    min-width: 180px;
   }
 }
 
@@ -568,48 +592,63 @@ body {
   }
 }
 
-/* 左上角标签 */
-.hero-tag {
+/* 左上角品牌标识 */
+.hero-brand {
   position: absolute;
   left: 60px;
   top: 50px;
   z-index: 5;
-  font-size: 13px;
-  color: var(--muted);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-/* 左上角 Logo */
-.hero-logo {
+.hero-brand-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.hero-brand-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* 滚动后显示的品牌标识 */
+.hero-brand-fixed {
   position: fixed;
-  left: 30px;
-  top: 25px;
-  width: 44px;
-  height: 44px;
+  left: 40px;
+  top: 22px;
   z-index: 999;
-  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
   opacity: 0;
   transition: opacity 0.4s ease;
-  border-radius: 10px;
-}
-
-.hero-logo::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  left: -12px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(126,200,80,0.85) 0%, rgba(126,200,80,0.3) 50%, rgba(126,200,80,0) 75%);
   pointer-events: none;
-  z-index: -1;
 }
 
-.hero-logo.visible {
+.hero-brand-fixed.visible {
   opacity: 1;
+  pointer-events: auto;
+}
+
+.hero-brand-fixed .hero-brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+.hero-brand-fixed .hero-brand-text {
+  font-size: 13px;
+  color: var(--fg);
 }
 
 .hero-tag span {
@@ -1379,18 +1418,24 @@ body.page-exit {
 </div>
 <div class="cursor-glow" id="cursorGlow"></div>
 
+<!-- 滚动后显示的品牌标识 -->
+<a href="#" class="hero-brand-fixed" id="heroBrandFixed" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
+  <img src="bz-logo.png" alt="BZ Logo" class="hero-brand-logo">
+  <span class="hero-brand-text">PORTFOLIO</span>
+</a>
+
 <!-- ============ 顶部导航栏 ============ -->
 <nav class="navbar" id="navbar">
-  <a href="#hero" class="nav-brand" data-section="hero">
-    <img src="bz-logo.png" alt="BZ Logo">
-    <span>PORTFOLIO</span>
-  </a>
   <div class="nav-menu">
     <a href="#intro" class="nav-link active" data-section="intro">关于我</a>
-    <a href="#works" class="nav-link" data-section="works">教育背景</a>
-    <a href="#works" class="nav-link" data-section="works">工作经历</a>
-    <a href="#works" class="nav-link" data-section="works">个人作品</a>
-    <a href="#thankyou" class="nav-link" data-section="thankyou">技能与爱好</a>
+    <div class="nav-dropdown">
+      <a href="#works" class="nav-link" data-section="works">项目经历</a>
+      <div class="nav-dropdown-menu">
+        <a href="#works" class="nav-dropdown-item" data-project="0"><span class="dd-num">01</span>千人行业峰会</a>
+        <a href="#works" class="nav-dropdown-item" data-project="1"><span class="dd-num">02</span>深圳国际家具展</a>
+        <a href="#works" class="nav-dropdown-item" data-project="2"><span class="dd-num">03</span>新媒体运营赋能线下</a>
+      </div>
+    </div>
     <a href="#thankyou" class="nav-link" data-section="thankyou">联系我</a>
   </div>
   <a href="#" class="nav-resume" title="下载简历">
@@ -1433,8 +1478,10 @@ body.page-exit {
 <section class="hero" id="hero">
   <div class="hero-glow"></div>
   <div class="hero-trail-layer" id="heroTrailLayer"></div>
-  <img src="bz-logo.png" alt="BZ Logo" class="hero-logo">
-  <div class="hero-tag">PORTFOLIO <span>/ 2026</span></div>
+  <a href="#" class="hero-brand" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
+    <img src="bz-logo.png" alt="BZ Logo" class="hero-brand-logo">
+    <span class="hero-brand-text">PORTFOLIO</span>
+  </a>
 
   <!-- 右侧文字 -->
   <div class="hero-text">
@@ -1999,14 +2046,28 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ============ Logo 滚动时显示 ============
-const heroLogo = document.querySelector('.hero-logo');
+// ============ 滚动后显示品牌标识 ============
+const heroBrandFixed = document.getElementById('heroBrandFixed');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 200) {
-    heroLogo.classList.add('visible');
+    heroBrandFixed.classList.add('visible');
   } else {
-    heroLogo.classList.remove('visible');
+    heroBrandFixed.classList.remove('visible');
   }
+});
+
+// ============ 项目经历下拉菜单点击 ============
+const dropdownItems = document.querySelectorAll('.nav-dropdown-item');
+dropdownItems.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const projectIndex = item.getAttribute('data-project');
+    const worksSection = document.getElementById('works');
+    if (worksSection) {
+      worksSection.scrollIntoView({ behavior: 'smooth' });
+      // 滚动后高亮对应项目（如果项目有独立ID的话）
+    }
+  });
 });
 
 </script>
