@@ -1073,13 +1073,24 @@ body {
   transform: translateZ(85px);
 }
 
+/* 右上方 ⭐ */
 .folder-sticker-1 { top: 25px; right: 35px; transform: translateZ(85px) rotate(12deg); }
+/* 左下方 🎯 */
 .folder-sticker-2 { bottom: 45px; left: 30px; transform: translateZ(85px) rotate(-8deg); }
+/* 左上方 ✨ */
 .folder-sticker-3 { top: 70px; left: 60px; transform: translateZ(85px) rotate(3deg); font-size: 22px; }
+/* 右下方 ✨ 新贴纸 */
+.folder-sticker-4 { bottom: 30px; right: 40px; transform: translateZ(85px) rotate(-5deg); font-size: 26px; }
 
+/* 悬停时所有贴纸高亮 */
 .folder-container:hover .folder-sticker {
   opacity: 0.9;
   transform: translateZ(85px) scale(1.15) rotate(0deg);
+}
+
+/* 单独给右下方贴纸添加悬停延迟 */
+.folder-container:hover .folder-sticker-4 {
+  transition-delay: 0.1s;
 }
 
 /* 文件夹提示文字 */
@@ -1606,7 +1617,7 @@ body {
     min-height: 200px;
   }
   .folder-sticker { font-size: 20px; position: relative; display: inline-block; margin: 5px; }
-  .folder-sticker-1, .folder-sticker-2, .folder-sticker-3 { 
+  .folder-sticker-1, .folder-sticker-2, .folder-sticker-3, .folder-sticker-4 { 
     position: relative; 
     top: auto; 
     left: auto; 
@@ -2014,6 +2025,7 @@ body.page-exit {
         <div class="folder-sticker folder-sticker-1">⭐</div>
         <div class="folder-sticker folder-sticker-2">🎯</div>
         <div class="folder-sticker folder-sticker-3">✨</div>
+        <div class="folder-sticker folder-sticker-4">✨</div>
         
         <!-- 文件夹标签 -->
         <div class="folder-tab">Works</div>
