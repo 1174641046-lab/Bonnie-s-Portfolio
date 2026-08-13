@@ -970,6 +970,9 @@ body {
 @media (max-width: 1200px) {
   .work-entry { gap: 40px; }
   .work-entry__info { flex: 0 0 45%; }
+  .thankyou-section { padding: 100px 40px 70px; gap: 50px; }
+  .thankyou-left p,
+  .thankyou-text { font-size: clamp(24px, 4.5vw, 64px); }
 }
 
 @media (max-width: 1024px) {
@@ -977,6 +980,9 @@ body {
   .about-container { grid-template-columns: 1fr; gap: 50px; }
   .work-entry { gap: 32px; padding: 48px 0; }
   .work-entry__info { flex: 0 0 48%; }
+  .thankyou-section { padding: 80px 30px 60px; gap: 40px; }
+  .thankyou-left p,
+  .thankyou-text { font-size: clamp(22px, 5vw, 48px); }
 }
 
 @media (max-width: 768px) {
@@ -1027,16 +1033,17 @@ body {
   .thankyou-contact {
     width: 100%;
   }
-  .thankyou-left p { font-size: clamp(24px, 8vw, 48px); }
+  .thankyou-left p { font-size: clamp(20px, 6vw, 32px); }
   .thankyou-text { 
     display: block !important; 
     text-align: left; 
-    font-size: clamp(24px, 8vw, 48px); 
-    letter-spacing: 0.1em; 
+    font-size: clamp(20px, 6vw, 32px); 
+    letter-spacing: 0.05em; 
     width: auto;
     margin: 0;
     line-height: 1.15;
     opacity: 1;
+    white-space: normal;
   }
   .thankyou-text span { display: inline-block; }
   .custom-cursor { display: none; }
@@ -1046,23 +1053,25 @@ body {
 
 /* ============ Thank You 区域 ============ */
 .thankyou-section {
-  padding: 140px 60px 100px;
+  padding: 120px 50px 80px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 40px;
+  gap: 60px;
 }
 
 .thankyou-left {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .thankyou-left p {
-  font-size: clamp(36px, 12vw, 150px);
+  font-size: clamp(28px, 5vw, 80px);
   color: #f5f5f5;
   line-height: 1.1;
   margin: 0;
@@ -1070,13 +1079,14 @@ body {
 }
 
 .thankyou-text {
-  font-size: clamp(36px, 12vw, 150px);
+  font-size: clamp(28px, 5vw, 80px);
   font-weight: 100;
   letter-spacing: -0.02em;
   color: var(--green);
   line-height: 1;
   text-transform: uppercase;
   opacity: 1;
+  white-space: nowrap;
 }
 
 .thankyou-text span {
