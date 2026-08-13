@@ -846,23 +846,48 @@ body {
 
 .intro-container {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 0.7fr 1.2fr 1fr;
   gap: 60px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  align-items: start;
+  align-items: stretch;
+}
+
+.intro-col {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.intro-col .skill-cloud-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+}
+
+.intro-col .skill-cloud {
+  flex: 1;
+  min-height: 0;
+  justify-content: center;
+  padding: 40px 28px;
 }
 
 .intro-video-wrap {
-  position: sticky;
-  top: 120px;
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .intro-video {
   width: 100%;
+  flex: 1;
+  min-height: 0;
   display: block;
   border-radius: 10px;
-  aspect-ratio: 3/4;
   object-fit: cover;
 }
 
@@ -873,6 +898,80 @@ body {
   margin-top: 12px;
   letter-spacing: 0.02em;
   line-height: 1.5;
+}
+
+/* ============ 词云式技能区 ============ */
+.intro-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.skill-cloud-section {
+  position: relative;
+  padding: 0;
+  min-height: 160px;
+}
+
+.skill-cloud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 40px 28px;
+  background: rgba(10, 10, 10, 0.5);
+  border: 0.5px solid #1a1a1a;
+  border-radius: 12px;
+  position: relative;
+  min-height: 0;
+}
+
+.skill-cloud-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 12px 16px;
+  width: 100%;
+}
+
+.cloud-tag {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 24px;
+  border: 0.5px solid #2a2a2a;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  cursor: none;
+  line-height: 1.4;
+}
+
+.cloud-tag:hover {
+  border-color: var(--green);
+  color: var(--green);
+  transform: scale(1.08);
+}
+
+.tag-xl { 
+  font-size: 22px; 
+  color: #A8E063; 
+  border-color: #3A3A3A; 
+  font-weight: 500;
+}
+
+.tag-lg { 
+  font-size: 18px; 
+  color: #fff; 
+}
+
+.tag-md { 
+  font-size: 15px; 
+  color: rgba(255,255,255,0.75); 
+}
+
+.tag-sm { 
+  font-size: 13px; 
+  color: rgba(255,255,255,0.45); 
 }
 
 .intro-content {
@@ -915,6 +1014,7 @@ body {
   color: var(--green);
   line-height: 1;
   margin-bottom: 6px;
+  white-space: nowrap;
 }
 
 .intro-stat-num span {
@@ -1489,23 +1589,63 @@ body.page-exit {
 
 <!-- ============ 自我介绍 ============ -->
 <section class="intro-section" id="intro">
-  <div class="intro-container">
-    <div class="intro-video-wrap reveal">
+<div class="intro-container">
+  <div class="intro-col reveal">
+    <div class="skill-cloud-section">
+      <div class="skill-cloud">
+        <div class="skill-cloud-row">
+          <span class="cloud-tag tag-xl">飞书多维表格王者</span>
+        </div>
+        <div class="skill-cloud-row">
+          <span class="cloud-tag tag-lg">Office全家桶</span>
+          <span class="cloud-tag tag-lg">项目管理</span>
+        </div>
+        <div class="skill-cloud-row">
+          <span class="cloud-tag tag-md">数据可视化</span>
+          <span class="cloud-tag tag-lg">供应商驯兽师</span>
+        </div>
+        <div class="skill-cloud-row">
+          <span class="cloud-tag tag-md">预算刺客</span>
+          <span class="cloud-tag tag-lg">现场控场王</span>
+        </div>
+        <div class="skill-cloud-row">
+          <span class="cloud-tag tag-md">PS修图魔法师</span>
+          <span class="cloud-tag tag-sm">PR剪辑特种兵</span>
+        </div>
+        <div class="skill-cloud-row">
+          <span class="cloud-tag tag-md">SOP制造机</span>
+          <span class="cloud-tag tag-sm">薪酬核算达人</span>
+        </div>
+        <div class="skill-cloud-row">
+          <span class="cloud-tag tag-sm">英语CET-4</span>
+          <span class="cloud-tag tag-md">普通话</span>
+          <span class="cloud-tag tag-sm">粤语</span>
+        </div>
+        <div class="skill-cloud-row">
+          <span class="cloud-tag tag-sm">C1驾照</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="intro-col reveal">
+    <div class="intro-video-wrap">
       <video autoplay muted loop playsinline preload="metadata" poster="hero-bonnie.png" class="intro-video" id="introVideo">
         <source src="about-video.mp4" type="video/mp4">
       </video>
       <p class="intro-video-caption">Bonnie：(๑˃̵ᴗ˂̵) 只要有1%像我那就是我！</p>
     </div>
-    <div class="intro-content reveal">
+  </div>
+  <div class="intro-col reveal">
+    <div class="intro-content">
       <div class="intro-label">ABOUT ME</div>
       <h2 class="intro-title"><span class="intro-title-light">从线上走到线下</span><br>懂新媒体的活动统筹者</h2>
       <div class="intro-stats">
         <div class="intro-stat">
-          <div class="intro-stat-num">5<span class="intro-stat-unit">年</span><span>+</span></div>
+          <div class="intro-stat-num">5<span>年</span><span>+</span></div>
           <div class="intro-stat-label">活动策划与执行经验</div>
         </div>
         <div class="intro-stat">
-          <div class="intro-stat-num">4<span class="intro-stat-unit">年</span><span>+</span></div>
+          <div class="intro-stat-num">4<span>年</span><span>+</span></div>
           <div class="intro-stat-label">大型展会经验</div>
         </div>
         <div class="intro-stat">
@@ -1513,7 +1653,7 @@ body.page-exit {
           <div class="intro-stat-label">人级峰会统筹</div>
         </div>
         <div class="intro-stat">
-          <div class="intro-stat-num">60<span>+</span><span class="intro-stat-unit">场</span></div>
+          <div class="intro-stat-num">60<span>场</span><span>+</span></div>
           <div class="intro-stat-label">沙龙/论坛/对接会/招商会等活动经验</div>
         </div>
       </div>
@@ -1522,44 +1662,7 @@ body.page-exit {
         <p class="intro-para">在大型展会主办方公司的4年间，我深度参与深圳国际家具展的全周期运营，从100+参展商对接、展馆导视系统优化，到AI客服系统升级（将机器人接管率从35%提升至90%），<b>我始终在用系统化思维提升工作效率与用户体验，并在大型展会的现场执行中提升了突发事件应急处理的能力。</b></p>
         <p class="intro-para">在跨境物流公司期间，我主导3场1000人级行业峰会及多场招商活动，通过优化投放策略将获客成本降低25%，并建立标准化SOP将到场率从33%提升至50%以上。<b>我擅长在高压多线程环境下稳定输出，运用智能多维表格和可视化看板等AI协作工具高效管理项目。</b></p>
       </div>
-      <div class="skills-section">
-        <div class="skill-category">
-          <div class="skill-category-title">办公技能</div>
-          <div class="skill-items">
-            <span class="skill-tag"><span class="skill-icon icon-office">M</span><span class="skill-name">Office</span></span>
-            <span class="skill-tag"><span class="skill-icon icon-design">Ps</span><span class="skill-name">PS</span></span>
-            <span class="skill-tag"><span class="skill-icon icon-video">Pr</span><span class="skill-name">PR</span></span>
-            <span class="skill-tag"><span class="skill-icon icon-video">剪</span><span class="skill-name">剪映</span></span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <div class="skill-category-title">专业技能</div>
-          <div class="skill-items">
-            <span class="skill-tag"><span class="skill-name">飞书多维表格</span></span>
-            <span class="skill-tag"><span class="skill-name">数据可视化</span></span>
 
-            <span class="skill-tag"><span class="skill-name">项目管理</span></span>
-            <span class="skill-tag"><span class="skill-name">供应商管理</span></span>
-            <span class="skill-tag"><span class="skill-name">预算管控</span></span>
-            <span class="skill-tag"><span class="skill-name">现场执行</span></span>
-            <span class="skill-tag"><span class="skill-name">SOP制定</span></span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <div class="skill-category-title">语言技能</div>
-          <div class="skill-items">
-            <span class="skill-tag"><span class="skill-name">英语 CET-4</span></span>
-            <span class="skill-tag"><span class="skill-name">普通话</span></span>
-            <span class="skill-tag"><span class="skill-name">粤语</span></span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <div class="skill-category-title">其他</div>
-          <div class="skill-items">
-            <span class="skill-tag"><span class="skill-name">C1驾照</span></span>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
