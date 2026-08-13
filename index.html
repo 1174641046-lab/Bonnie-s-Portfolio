@@ -267,9 +267,30 @@ body {
   padding: 24px 60px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 40px;
   transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.nav-label {
+  font-size: 13px;
+  color: var(--green);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.navbar.scrolled {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* 中间导航菜单 */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 
 .navbar.scrolled {
@@ -1528,6 +1549,7 @@ body.page-exit {
 
 <!-- ============ 顶部导航栏 ============ -->
 <nav class="navbar" id="navbar">
+  <div class="nav-label">ABOUT ME</div>
   <div class="nav-menu">
     <a href="#intro" class="nav-link active" data-section="intro">关于我</a>
     <div class="nav-dropdown">
