@@ -267,7 +267,7 @@ body {
   padding: 24px 60px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 40px;
   transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
 }
@@ -723,6 +723,19 @@ body {
   margin-bottom: 60px;
   border-bottom: 1px solid #1a1a1a;
   padding-bottom: 24px;
+}
+
+/* About Me 区域标题 */
+.intro-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 24px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-label {
@@ -1549,7 +1562,6 @@ body.page-exit {
 
 <!-- ============ 顶部导航栏 ============ -->
 <nav class="navbar" id="navbar">
-  <div class="nav-label">ABOUT ME</div>
   <div class="nav-menu">
     <a href="#intro" class="nav-link active" data-section="intro">关于我</a>
     <div class="nav-dropdown">
@@ -1613,30 +1625,33 @@ body.page-exit {
 
 <!-- ============ 自我介绍 ============ -->
 <section class="intro-section" id="intro">
+<div class="intro-meta reveal">
+  <span class="section-label">About me</span>
+  <span class="section-num">002</span>
+</div>
 <div class="intro-container">
   <div class="intro-col reveal">
     <div class="skill-cloud-section">
       <div class="skill-cloud">
-        <div class="cloud-row"><span class="cloud-tag tag-xl">飞书多维表格王者</span></div>
+        <div class="cloud-row"><span class="cloud-tag tag-xl">飞书/企微多维表格能手</span></div>
         <div class="cloud-row">
           <span class="cloud-tag tag-lg">Office全家桶</span>
           <span class="cloud-tag tag-lg">项目管理</span>
         </div>
         <div class="cloud-row">
           <span class="cloud-tag tag-md">数据可视化</span>
-          <span class="cloud-tag tag-lg">供应商驯兽师</span>
+          <span class="cloud-tag tag-lg">供应商管理</span>
         </div>
         <div class="cloud-row">
-          <span class="cloud-tag tag-md">预算刺客</span>
+          <span class="cloud-tag tag-md">预算管控</span>
           <span class="cloud-tag tag-lg">现场控场王</span>
         </div>
         <div class="cloud-row">
           <span class="cloud-tag tag-md">PS修图魔法师</span>
-          <span class="cloud-tag tag-sm">PR剪辑特种兵</span>
+          <span class="cloud-tag tag-sm">PR/剪映视频操盘手</span>
         </div>
         <div class="cloud-row">
-          <span class="cloud-tag tag-md">SOP制造机</span>
-          <span class="cloud-tag tag-sm">剪映快剪达人</span>
+          <span class="cloud-tag tag-md">SOP标准化制定者</span>
         </div>
         <div class="cloud-row">
           <span class="cloud-tag tag-sm">英语CET-4</span>
@@ -1657,7 +1672,6 @@ body.page-exit {
   </div>
   <div class="intro-col reveal">
     <div class="intro-content">
-      <div class="intro-label">ABOUT ME</div>
       <h2 class="intro-title"><span class="intro-title-light">从线上走到线下</span><br>懂新媒体的活动统筹者</h2>
       <div class="intro-stats">
         <div class="intro-stat">
