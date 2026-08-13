@@ -293,6 +293,98 @@ body.page-exit {
   display: none;
 }
 
+/* ============ 项目板块 ============ */
+.project-sections {
+  padding: 80px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.project-section {
+  margin-bottom: 120px;
+}
+
+.project-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-header {
+  margin-bottom: 40px;
+}
+
+.section-num {
+  font-size: clamp(48px, 8vw, 80px);
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 16px;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.section-title {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.section-desc {
+  font-size: 16px;
+  color: #bbb;
+  line-height: 1.85;
+  max-width: 800px;
+}
+
+.section-gallery {
+  display: grid;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.gallery-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gallery-1 {
+  grid-template-columns: 1fr;
+  max-width: 800px;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 4px;
+  background: #111;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .project-sections {
+    padding: 60px 20px;
+  }
+  .project-section {
+    margin-bottom: 80px;
+  }
+  .gallery-3 {
+    grid-template-columns: 1fr;
+  }
+  .section-gallery {
+    gap: 8px;
+  }
+}
+
 /* 侧箭头导航 */
 .side-arrow {
   position: fixed;
@@ -471,6 +563,64 @@ body.page-exit {
       </div>
     </div>
   </div>
+  
+  <!-- 四个详细板块 -->
+  <div class="project-sections">
+    <!-- 01 展商对接 -->
+    <div class="project-section">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <h2 class="section-title">展商对接</h2>
+        <p class="section-desc">从合同条款的一字一句到展位搭建的寸寸落地，全程跟进100+参展商的参展链路。展前审核搭建图纸、协调物流动线，展中实时解决展位突发需求，展后复盘签约转化率。看着一个个平面图纸变成极具设计感的实景展厅，那种从0到1的成就感，是这份工作最迷人的部分。</p>
+      </div>
+      <div class="section-gallery gallery-3">
+        <div class="gallery-item"><img src="p02-sec01-1.jpg" alt="展商对接"></div>
+        <div class="gallery-item"><img src="p02-sec01-2.png" alt="展商对接"></div>
+        <div class="gallery-item"><img src="p02-sec01-3.jpg" alt="展商对接"></div>
+      </div>
+    </div>
+    
+    <!-- 02 导视系统优化 -->
+    <div class="project-section">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <h2 class="section-title">导视系统优化</h2>
+        <p class="section-desc">32万m²的展馆里，迷路是观众最大的痛点。我花了一周时间跑遍展馆每个角落，观察N个同类展会的导视逻辑，重新规划了动线标识体系。结果很直接：观众迷路投诉率下降35%，中小参展商因为客流提升，次年续约率增长6.1%。好的体验设计，从来都是用脚步和耐心磨出来的。</p>
+      </div>
+      <div class="section-gallery gallery-3">
+        <div class="gallery-item"><img src="p02-sec02-1.jpg" alt="导视规划"></div>
+        <div class="gallery-item"><img src="p02-sec02-2.jpg" alt="导视规划"></div>
+        <div class="gallery-item"><img src="p02-sec02-3.jpg" alt="导视规划"></div>
+      </div>
+    </div>
+    
+    <!-- 03 客服系统AI自动化 -->
+    <div class="project-section">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <h2 class="section-title">客服系统AI自动化</h2>
+        <p class="section-desc">曾经，客服咨询分散在微信、电话、邮件多个入口，人工响应平均需要15分钟。我梳理了全渠道咨询场景，推动上线AI客服机器人，把重复性问题标准化、自动化。现在90%的常规咨询由AI即时响应，人工团队专注处理复杂客诉。人效提升的背后，是我对"AI不是替代人，而是让人做更有价值的事"这句话的实践。</p>
+      </div>
+      <div class="section-gallery gallery-1">
+        <div class="gallery-item"><img src="p02-sec03-1.jpg" alt="客服系统流程"></div>
+      </div>
+    </div>
+    
+    <!-- 04 展会现场执行 -->
+    <div class="project-section">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <h2 class="section-title">展会现场执行</h2>
+        <p class="section-desc">主出入口日均人流量超过8万人次，任何一个环节卡顿都可能引发连锁反应。我在这里学会了在高压下保持冷静：协调安保维持秩序、对接物业处理设备故障、安抚情绪激动的参展商、在10分钟内调动备用方案。每一次突发状况的妥善处理，都让我对自己多一分信心。我喜欢这些经历带给我的成长，它们让我在任何场合都能站得稳。</p>
+      </div>
+      <div class="section-gallery gallery-3">
+        <div class="gallery-item"><img src="p02-sec04-1.jpg" alt="展会现场"></div>
+        <div class="gallery-item"><img src="p02-sec04-2.jpg" alt="展会现场"></div>
+        <div class="gallery-item"><img src="p02-sec04-3.jpg" alt="展会现场"></div>
+      </div>
+    </div>
+  </div>
+  
   <!-- 左侧箭头 -->
   <a href="project-01.html" class="side-arrow prev">&lt;</a>
   <!-- 右侧箭头 -->
