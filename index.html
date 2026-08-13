@@ -283,6 +283,19 @@ body {
   opacity: 0.35;
 }
 
+/* Thank You 左侧绿色光晕 */
+.thankyou-glow {
+  position: absolute;
+  bottom: -40%;
+  left: -20%;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(126, 200, 80, 0.2) 0%, rgba(126, 200, 80, 0.06) 40%, rgba(126, 200, 80, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* 自定义光标：绿色填充 + 白色描边箭头 */
 .custom-cursor {
   position: fixed;
@@ -1058,6 +1071,7 @@ body {
 
 /* ============ Thank You 区域 ============ */
 .thankyou-section {
+  position: relative;
   padding: 120px 50px 80px;
   overflow: hidden;
   display: flex;
@@ -1370,6 +1384,7 @@ body.page-exit {
 
 
 <section class="thankyou-section">
+  <div class="thankyou-glow"></div>
   <div class="thankyou-left">
     <p>下一段经历，</p>
     <p>期待一起创建！</p>
