@@ -716,139 +716,181 @@ body {
   perspective: 1500px;
 }
 
-/* ============ 文件夹展开效果 ============ */
+.works-section {
+  padding: 120px 60px 60px;
+  perspective: 2000px;
+}
+
+/* ============ 真实3D文件夹效果 ============ */
 .folder-container {
   position: relative;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 600px;
+  min-height: 650px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  padding-bottom: 60px;
   transform-style: preserve-3d;
 }
 
-.folder-back {
+/* 文件夹整体3D盒子 */
+.folder-box {
   position: relative;
-  width: 700px;
-  height: 480px;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  border-radius: 24px 24px 12px 12px;
-  box-shadow: 
-    0 20px 60px rgba(0,0,0,0.4),
-    inset 0 1px 0 rgba(255,255,255,0.1);
+  width: 720px;
+  height: 500px;
   transform-style: preserve-3d;
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  overflow: visible;
+  transform: rotateX(5deg);
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.7s ease;
+  /* 底部绿色投影，营造悬浮感 */
+  box-shadow: 
+    0 30px 80px rgba(126, 200, 80, 0.15),
+    0 15px 40px rgba(0, 0, 0, 0.3),
+    0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* 文件夹顶部标签 */
-.folder-tab {
-  position: absolute;
-  top: -40px;
-  left: 40px;
-  width: 200px;
-  height: 50px;
-  background: linear-gradient(135deg, #7EC850 0%, #A8E063 100%);
-  border-radius: 12px 12px 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 600;
-  color: #0a0a0a;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  box-shadow: 0 -4px 20px rgba(126, 200, 80, 0.3);
-  z-index: 10;
+/* 悬停时增强悬浮感 */
+.folder-container:hover .folder-box {
+  transform: rotateX(0deg) translateY(-20px);
+  box-shadow: 
+    0 50px 100px rgba(126, 200, 80, 0.25),
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-.folder-tab::before {
-  content: '📁';
-  margin-right: 8px;
-  font-size: 18px;
-}
-
-/* 文件夹内部背景 */
-.folder-inner {
+/* 文件夹后壁 - 较深，营造深度 */
+.folder-rear {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 24px 24px 12px 12px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    #1a1a3e 0%, 
+    #16234d 30%,
+    #1a1a2e 100%
+  );
+  border-radius: 24px 24px 16px 16px;
+  transform: translateZ(-60px);
+  box-shadow: 
+    inset 0 0 60px rgba(126, 200, 80, 0.08),
+    inset 0 2px 0 rgba(255,255,255,0.05);
+}
+
+/* 文件夹内壁纹理 */
+.folder-rear::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 30px;
   background: 
-    linear-gradient(135deg, rgba(126,200,80,0.05) 0%, transparent 50%),
     repeating-linear-gradient(
       45deg,
       transparent,
-      transparent 10px,
-      rgba(126,200,80,0.02) 10px,
-      rgba(126,200,80,0.02) 20px
+      transparent 15px,
+      rgba(126,200,80,0.03) 15px,
+      rgba(126,200,80,0.03) 30px
     );
-  overflow: hidden;
-}
-
-/* 装饰贴纸 */
-.folder-sticker {
-  position: absolute;
-  font-size: 24px;
+  border-radius: 16px;
   opacity: 0.6;
-  transition: all 0.4s ease;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
-.folder-sticker-1 { top: 20px; right: 30px; transform: rotate(15deg); }
-.folder-sticker-2 { bottom: 30px; left: 25px; transform: rotate(-10deg); }
-.folder-sticker-3 { top: 60px; left: 50px; transform: rotate(5deg); font-size: 20px; }
-
-/* 项目卡片 */
-.project-cards {
+/* 卡片层 - 在3D空间中 */
+.folder-cards {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
+  transform: translate(-50%, -50%) translateZ(-20px);
   transform-style: preserve-3d;
   pointer-events: none;
 }
 
+/* 项目卡片 - 真实的3D空间 */
 .project-card {
   position: absolute;
-  width: 280px;
-  height: 360px;
+  width: 260px;
+  height: 340px;
   background: linear-gradient(145deg, #1e1e2e 0%, #252538 100%);
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 
-    0 10px 40px rgba(0,0,0,0.3),
-    0 0 0 1px rgba(255,255,255,0.05);
-  transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    0 8px 30px rgba(0,0,0,0.4),
+    0 0 0 1px rgba(255,255,255,0.06);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform-style: preserve-3d;
   cursor: none;
   pointer-events: auto;
+  /* 初始位置：只露出顶部，像在文件夹中一样 */
   top: 50%;
   left: 50%;
-  margin-top: -180px;
-  margin-left: -140px;
+  margin-top: -170px;
+  margin-left: -130px;
 }
 
-/* 卡片初始堆叠状态 */
+/* 收起状态：只露出顶部，前后层次 */
 .project-card:nth-child(1) {
-  transform: translateZ(0px) rotateY(-2deg) rotateX(1deg);
+  transform: 
+    translateZ(40px) 
+    translateY(80px)
+    rotateY(-3deg);
   z-index: 3;
 }
 
 .project-card:nth-child(2) {
-  transform: translateZ(-10px) rotateY(1deg) rotateX(-1deg) translateX(5px);
+  transform: 
+    translateZ(0px) 
+    translateY(100px)
+    rotateY(2deg)
+    translateX(8px);
   z-index: 2;
 }
 
 .project-card:nth-child(3) {
-  transform: translateZ(-20px) rotateY(-1deg) rotateX(2deg) translateX(-3px);
+  transform: 
+    translateZ(-40px) 
+    translateY(120px)
+    rotateY(-1deg)
+    translateX(-5px);
   z-index: 1;
+}
+
+/* 展开状态：向外飞出 */
+.folder-container:hover .project-card:nth-child(1) {
+  transform: 
+    translateZ(100px) 
+    translateX(-300px) 
+    translateY(-180px) 
+    rotateY(-20deg);
+}
+
+.folder-container:hover .project-card:nth-child(2) {
+  transform: 
+    translateZ(120px) 
+    translateX(0px) 
+    translateY(-200px) 
+    rotateY(0deg);
+}
+
+.folder-container:hover .project-card:nth-child(3) {
+  transform: 
+    translateZ(100px) 
+    translateX(300px) 
+    translateY(-180px) 
+    rotateY(20deg);
+}
+
+/* 卡片悬停效果 */
+.project-card:hover {
+  box-shadow: 
+    0 20px 60px rgba(0,0,0,0.5),
+    0 0 0 2px var(--green),
+    0 0 40px rgba(126,200,80,0.3);
+  z-index: 100 !important;
 }
 
 /* 卡片内容 */
@@ -871,10 +913,10 @@ body {
 }
 
 .card-content {
-  padding: 20px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .card-num {
@@ -885,7 +927,7 @@ body {
 }
 
 .card-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--fg);
   line-height: 1.2;
@@ -893,7 +935,7 @@ body {
 }
 
 .card-desc {
-  font-size: 13px;
+  font-size: 12px;
   color: #888;
   line-height: 1.5;
   display: -webkit-box;
@@ -915,59 +957,137 @@ body {
   width: fit-content;
 }
 
-/* 鼠标悬停时卡片展开 */
-.folder-container:hover .folder-back {
-  transform: translateY(-20px);
-  box-shadow: 
-    0 40px 80px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.1);
+/* 遮罩层 - 遮住卡片下半，营造"在文件夹中"的感觉 */
+.folder-mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(26, 26, 62, 0.3) 20%,
+    rgba(26, 26, 62, 0.8) 60%,
+    rgba(26, 26, 62, 1) 100%
+  );
+  border-radius: 0 0 16px 16px;
+  pointer-events: none;
+  z-index: 10;
+  transform: translateZ(50px);
+  transition: opacity 0.6s ease;
 }
+
+/* 悬停时遮罩淡出 */
+.folder-container:hover .folder-mask {
+  opacity: 0;
+}
+
+/* 前面板 - 毛玻璃效果 */
+.folder-front-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 75%;
+  background: 
+    linear-gradient(180deg, 
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(126, 200, 80, 0.05) 50%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  border-radius: 24px 24px 16px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(126, 200, 80, 0.15);
+  transform: translateZ(80px);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 50px 40px;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+/* 悬停时前面板下沉 */
+.folder-container:hover .folder-front-panel {
+  transform: translateZ(80px) translateY(30px);
+  opacity: 0.4;
+}
+
+/* 前面板上的文字 */
+.folder-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.folder-subtitle {
+  font-size: 14px;
+  color: var(--green);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* 文件夹标签 */
+.folder-tab {
+  position: absolute;
+  top: -38px;
+  left: 50px;
+  width: 180px;
+  height: 48px;
+  background: linear-gradient(135deg, #7EC850 0%, #A8E063 100%);
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0a0a0a;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 0 -4px 20px rgba(126, 200, 80, 0.3);
+  z-index: 30;
+  transform: translateZ(90px);
+}
+
+.folder-tab::before {
+  content: '📁';
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+/* 装饰贴纸 */
+.folder-sticker {
+  position: absolute;
+  font-size: 28px;
+  opacity: 0.5;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+  z-index: 25;
+  transform: translateZ(85px);
+}
+
+.folder-sticker-1 { top: 25px; right: 35px; transform: translateZ(85px) rotate(12deg); }
+.folder-sticker-2 { bottom: 45px; left: 30px; transform: translateZ(85px) rotate(-8deg); }
+.folder-sticker-3 { top: 70px; left: 60px; transform: translateZ(85px) rotate(3deg); font-size: 22px; }
 
 .folder-container:hover .folder-sticker {
-  opacity: 1;
-  transform: scale(1.2) rotate(0deg);
-}
-
-.folder-container:hover .project-card:nth-child(1) {
-  transform: 
-    translateZ(60px) 
-    translateX(-320px) 
-    translateY(-30px) 
-    rotateY(-15deg) 
-    rotateX(5deg);
-}
-
-.folder-container:hover .project-card:nth-child(2) {
-  transform: 
-    translateZ(80px) 
-    translateX(0px) 
-    translateY(-50px) 
-    rotateY(0deg) 
-    rotateX(0deg);
-}
-
-.folder-container:hover .project-card:nth-child(3) {
-  transform: 
-    translateZ(60px) 
-    translateX(320px) 
-    translateY(-30px) 
-    rotateY(15deg) 
-    rotateX(5deg);
-}
-
-/* 卡片悬停效果 */
-.project-card:hover {
-  box-shadow: 
-    0 20px 60px rgba(0,0,0,0.4),
-    0 0 0 2px var(--green),
-    0 0 30px rgba(126,200,80,0.2);
-  z-index: 100 !important;
+  opacity: 0.9;
+  transform: translateZ(85px) scale(1.15) rotate(0deg);
 }
 
 /* 文件夹提示文字 */
 .folder-hint {
   position: absolute;
-  bottom: -60px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   font-size: 13px;
@@ -975,6 +1095,7 @@ body {
   letter-spacing: 0.1em;
   opacity: 0.7;
   transition: all 0.4s ease;
+  white-space: nowrap;
 }
 
 .folder-hint::before {
@@ -984,24 +1105,6 @@ body {
 .folder-container:hover .folder-hint {
   opacity: 0;
   transform: translateX(-50%) translateY(-10px);
-}
-
-/* 文件夹正面（半开状态） */
-.folder-front {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(180deg, rgba(126,200,80,0.1) 0%, transparent 100%);
-  border-radius: 0 0 12px 12px;
-  pointer-events: none;
-  transition: all 0.6s ease;
-}
-
-.folder-container:hover .folder-front {
-  opacity: 0.3;
-  transform: translateY(10px);
 }
 
 /* ============ 自我介绍区域 ============ */
@@ -1424,11 +1527,11 @@ body {
 
 /* ============ 响应式 ============ */
 @media (max-width: 1200px) {
-  .folder-back { width: 600px; height: 420px; }
+  .folder-box { width: 600px; height: 420px; }
   .project-card { width: 240px; height: 320px; margin-top: -160px; margin-left: -120px; }
-  .folder-container:hover .project-card:nth-child(1) { transform: translateZ(50px) translateX(-270px) translateY(-20px) rotateY(-12deg) rotateX(4deg); }
-  .folder-container:hover .project-card:nth-child(2) { transform: translateZ(70px) translateX(0px) translateY(-40px) rotateY(0deg) rotateX(0deg); }
-  .folder-container:hover .project-card:nth-child(3) { transform: translateZ(50px) translateX(270px) translateY(-20px) rotateY(12deg) rotateX(4deg); }
+  .folder-container:hover .project-card:nth-child(1) { transform: translateZ(80px) translateX(-260px) translateY(-150px) rotateY(-18deg); }
+  .folder-container:hover .project-card:nth-child(2) { transform: translateZ(100px) translateX(0px) translateY(-170px) rotateY(0deg); }
+  .folder-container:hover .project-card:nth-child(3) { transform: translateZ(80px) translateX(260px) translateY(-150px) rotateY(18deg); }
   .thankyou-section { padding: 100px 40px 70px; gap: 50px; }
   .thankyou-left p,
   .thankyou-text { font-size: clamp(24px, 4.5vw, 64px); }
@@ -1437,12 +1540,12 @@ body {
 @media (max-width: 1024px) {
   .hero-text { padding-right: 40px; }
   .about-container { grid-template-columns: 1fr; gap: 50px; }
-  .folder-back { width: 90vw; height: 380px; }
+  .folder-box { width: 90vw; height: 380px; }
   .folder-container { min-height: 500px; }
   .project-card { width: 220px; height: 300px; margin-top: -150px; margin-left: -110px; }
-  .folder-container:hover .project-card:nth-child(1) { transform: translateZ(40px) translateX(-240px) translateY(-15px) rotateY(-10deg) rotateX(3deg); }
-  .folder-container:hover .project-card:nth-child(2) { transform: translateZ(60px) translateX(0px) translateY(-35px) rotateY(0deg) rotateX(0deg); }
-  .folder-container:hover .project-card:nth-child(3) { transform: translateZ(40px) translateX(240px) translateY(-15px) rotateY(10deg) rotateX(3deg); }
+  .folder-container:hover .project-card:nth-child(1) { transform: translateZ(60px) translateX(-220px) translateY(-140px) rotateY(-15deg); }
+  .folder-container:hover .project-card:nth-child(2) { transform: translateZ(80px) translateX(0px) translateY(-160px) rotateY(0deg); }
+  .folder-container:hover .project-card:nth-child(3) { transform: translateZ(60px) translateX(220px) translateY(-140px) rotateY(15deg); }
   .thankyou-section { padding: 80px 30px 60px; gap: 40px; }
   .thankyou-left p,
   .thankyou-text { font-size: clamp(22px, 5vw, 48px); }
@@ -1452,15 +1555,38 @@ body {
   .works-section { padding: 80px 20px 40px; }
   .section-meta { margin-bottom: 48px; }
   .folder-container { min-height: auto; perspective: none; padding: 20px 0; }
-  .folder-back { 
+  .folder-box { 
     width: 100%; 
     height: auto; 
     min-height: 500px;
     transform-style: flat;
+    transform: none;
     position: relative;
   }
-  .folder-tab { width: 160px; height: 40px; font-size: 12px; top: -35px; }
-  .project-cards { 
+  .folder-rear { 
+    transform: none; 
+    border-radius: 20px; 
+    position: relative;
+    min-height: 400px;
+  }
+  .folder-mask { display: none; }
+  .folder-front-panel { 
+    transform: none; 
+    position: relative;
+    height: auto;
+    min-height: 120px;
+    border-radius: 0 0 20px 20px;
+  }
+  .folder-tab { 
+    width: 160px; 
+    height: 40px; 
+    font-size: 12px; 
+    top: -35px; 
+    transform: none;
+    position: relative;
+    margin-bottom: -35px;
+  }
+  .folder-cards { 
     position: relative; 
     top: auto; 
     left: auto; 
@@ -1468,7 +1594,7 @@ body {
     display: flex; 
     flex-direction: column; 
     gap: 20px; 
-    padding: 30px 20px;
+    padding: 20px;
     pointer-events: auto;
   }
   .project-card { 
@@ -1479,9 +1605,21 @@ body {
     top: auto; 
     left: auto;
     transform: none !important;
+    min-height: 200px;
   }
-  .folder-sticker { font-size: 18px; }
+  .folder-sticker { font-size: 20px; position: relative; display: inline-block; margin: 5px; }
+  .folder-sticker-1, .folder-sticker-2, .folder-sticker-3 { 
+    position: relative; 
+    top: auto; 
+    left: auto; 
+    right: auto; 
+    bottom: auto;
+    transform: none;
+  }
   .folder-hint { display: none; }
+  .folder-title { font-size: 22px; }
+  .folder-subtitle { font-size: 12px; }
+  .folder-sticker { font-size: 18px; }
   .hero-text { padding-right: 20px; max-width: 90vw; }
   .hero-tag { left: 20px; top: 30px; }
   .hero-name { font-size: clamp(64px, 18vw, 120px); }
@@ -1850,29 +1988,42 @@ body.page-exit {
   </div>
 </section>
 
-<!-- ============ Works ============ -->
-<section class="works-section" id="works">
-  <div class="section-meta reveal">
-    <span class="section-label">Project works</span>
-    <span class="section-num">001</span>
-  </div>
+  <!-- ============ Works ============ -->
+  <section class="works-section" id="works">
+    <div class="section-meta reveal">
+      <span class="section-label">Project works</span>
+      <span class="section-num">001</span>
+    </div>
 
-  <div class="folder-container reveal" id="folderContainer">
-    <div class="folder-back">
-      <div class="folder-tab">Works</div>
-      <div class="folder-inner">
+    <div class="folder-container reveal" id="folderContainer">
+      <div class="folder-box">
+        <!-- 后壁 -->
+        <div class="folder-rear"></div>
+        
+        <!-- 卡片层 -->
+        <div class="folder-cards" id="projectCards"></div>
+        
+        <!-- 遮罩层（收起时遮住卡片下半） -->
+        <div class="folder-mask"></div>
+        
+        <!-- 前面板（毛玻璃） -->
+        <div class="folder-front-panel">
+          <div class="folder-title">Bonnie's Project Works</div>
+          <div class="folder-subtitle">3 Selected Projects</div>
+        </div>
+        
+        <!-- 装饰贴纸 -->
         <div class="folder-sticker folder-sticker-1">⭐</div>
         <div class="folder-sticker folder-sticker-2">🎯</div>
         <div class="folder-sticker folder-sticker-3">✨</div>
+        
+        <!-- 文件夹标签 -->
+        <div class="folder-tab">Works</div>
       </div>
-      <div class="folder-front"></div>
-      <div class="project-cards" id="projectCards">
-        <!-- 项目卡片由JS动态生成 -->
-      </div>
+      
+      <div class="folder-hint">悬停展开查看项目</div>
     </div>
-    <div class="folder-hint">悬停展开查看项目</div>
-  </div>
-</section>
+  </section>
 
 
 <section class="thankyou-section" id="thankyou">
