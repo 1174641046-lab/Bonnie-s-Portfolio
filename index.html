@@ -1668,10 +1668,19 @@ body {
   .thankyou-contact {
     width: 100%;
   }
-  .thankyou-left p { font-size: clamp(20px, 6vw, 32px); }
+  .thankyou-left {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  .thankyou-left p {
+    font-size: clamp(24px, 7vw, 40px);
+    text-align: center;
+    width: 100%;
+  }
   .thankyou-text { 
     display: block !important; 
-    text-align: left; 
+    text-align: center; 
     font-size: clamp(20px, 6vw, 32px); 
     letter-spacing: 0.05em; 
     width: auto;
@@ -1679,6 +1688,14 @@ body {
     line-height: 1.15;
     opacity: 1;
     white-space: normal;
+  }
+  .thankyou-right {
+    width: 100%;
+    align-items: center;
+    order: 1;
+  }
+  .thankyou-left {
+    order: 2;
   }
   .thankyou-text span { display: inline-block; }
   .custom-cursor { display: none; }
