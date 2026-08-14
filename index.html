@@ -411,7 +411,15 @@ body {
 @media (max-width: 768px) {
   .navbar {
     padding: 16px 20px;
-    justify-content: center;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  .hero-brand-fixed {
+    left: 20px;
+    top: 12px;
+  }
+  .nav-menu {
+    gap: 4px;
   }
   .navbar.scrolled {
     padding: 12px 20px;
@@ -1573,38 +1581,23 @@ body {
 @media (max-width: 768px) {
   .works-section { padding: 80px 20px 40px; }
   .section-meta { margin-bottom: 48px; }
-  .folder-container { min-height: auto; perspective: none; padding: 20px 0; }
+  .folder-container { padding: 0; }
   .folder-box { 
     width: 100%; 
     height: auto; 
-    min-height: 500px;
-    transform-style: flat;
+    min-height: auto;
     transform: none;
     position: relative;
+    background: none;
+    box-shadow: none;
   }
-  .folder-rear { 
-    transform: none; 
-    border-radius: 20px; 
-    position: relative;
-    min-height: 400px;
-  }
+  .folder-rear { display: none; }
   .folder-mask { display: none; }
-  .folder-front-panel { 
-    transform: none; 
-    position: relative;
-    height: auto;
-    min-height: 120px;
-    border-radius: 0 0 20px 20px;
-  }
-  .folder-tab { 
-    width: 160px; 
-    height: 40px; 
-    font-size: 12px; 
-    top: -35px; 
-    transform: none;
-    position: relative;
-    margin-bottom: -35px;
-  }
+  .folder-front-panel { display: none; }
+  .folder-tab { display: none; }
+  .folder-sticker { display: none; }
+  .folder-sticker-1, .folder-sticker-2, .folder-sticker-3, .folder-sticker-4 { display: none; }
+  .folder-hint { display: none; }
   .folder-cards { 
     position: relative; 
     top: auto; 
@@ -1612,8 +1605,8 @@ body {
     transform: none;
     display: flex; 
     flex-direction: column; 
-    gap: 20px; 
-    padding: 20px;
+    gap: 16px; 
+    padding: 0;
     pointer-events: auto;
   }
   .project-card { 
@@ -1625,17 +1618,9 @@ body {
     left: auto;
     transform: none !important;
     min-height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
   }
-  .folder-sticker { font-size: 20px; position: relative; display: inline-block; margin: 5px; }
-  .folder-sticker-1, .folder-sticker-2, .folder-sticker-3, .folder-sticker-4 { 
-    position: relative; 
-    top: auto; 
-    left: auto; 
-    right: auto; 
-    bottom: auto;
-    transform: none;
-  }
-  .folder-hint { display: none; }
   .folder-title { font-size: 22px; }
   .folder-subtitle { font-size: 12px; }
   .folder-sticker { font-size: 18px; }
@@ -1643,14 +1628,23 @@ body {
   .hero-tag { left: 20px; top: 30px; }
   .hero-name { font-size: clamp(64px, 18vw, 120px); }
   .hero-surname { font-size: clamp(32px, 8vw, 60px); }
-  .hero-desc { font-size: 13px; max-width: 90vw; }
+  .hero-desc { font-size: 13px; max-width: 72vw; line-height: 1.7; }
   .hero-desc + .hero-desc { margin-top: 4px; }
   .hero-glow { opacity: 1 !important; }
   .hero-logo { width: 32px; height: 32px; left: 16px; top: 16px; }
   .about-section { padding: 60px 20px; }
   .footer { padding: 40px 20px 20px; }
-  .intro-container { grid-template-columns: 1fr; gap: 60px; }
-  .intro-col { width: 100%; }
+  .intro-container { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+  .intro-col { width: 100%; align-items: center; }
+  .intro-col .skill-cloud { padding: 24px 16px; gap: 12px; }
+  .cloud-row { justify-content: center; }
+  .intro-content { align-items: center; }
+  .intro-desc { text-align: left; }
+  .intro-para { word-break: break-word; overflow-wrap: break-word; }
+  .intro-stats { justify-content: center; flex-wrap: wrap; }
+  .intro-stat { min-width: 120px; }
+  .intro-stat-label { white-space: normal; }
+  .intro-video-caption { text-align: center; }
   .intro-video-wrap { position: relative; top: 0; width: 100%; aspect-ratio: 3/4; max-height: 50vh; margin-bottom: 40px; }
   .intro-video { aspect-ratio: 3/4; }
   .intro-section { padding: 60px 20px; }
