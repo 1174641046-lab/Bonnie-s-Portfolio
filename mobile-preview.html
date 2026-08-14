@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonnie Portfolio - 移动端预览</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  padding: 40px 20px;
+  gap: 24px;
+}
+.preview-title {
+  color: #7ec850;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.preview-subtitle {
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.phone-frame {
+  width: 414px;
+  height: 896px;
+  background: #000;
+  border-radius: 40px;
+  border: 12px solid #2a2a2a;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5), 0 0 60px rgba(126,200,80,0.1);
+}
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 30px;
+  background: #000;
+  border-radius: 0 0 20px 20px;
+  z-index: 10;
+}
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 28px;
+}
+.phone-home-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 134px;
+  height: 5px;
+  background: #fff;
+  border-radius: 3px;
+  z-index: 10;
+  opacity: 0.3;
+}
+.url-info {
+  color: #666;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 16px;
+}
+.url-info a {
+  color: #7ec850;
+  text-decoration: none;
+}
+.url-info a:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+<body>
+  <div class="preview-title">移动端预览</div>
+  <div class="preview-subtitle">Bonnie Zhang Portfolio - 手机端效果</div>
+  <div class="phone-frame">
+    <div class="phone-notch"></div>
+    <iframe 
+      class="phone-screen" 
+      src="./index.html" 
+      width="390" 
+      height="844"
+      frameborder="0"
+      scrolling="yes"
+    ></iframe>
+    <div class="phone-home-bar"></div>
+  </div>
+  <div class="url-info">
+    <p>实际访问网址：<a href="https://1174641046-lab.github.io/Bonnie-s-Portfolio/" target="_blank">https://1174641046-lab.github.io/Bonnie-s-Portfolio/</a></p>
+    <p style="margin-top:8px;color:#444;">请 Ctrl+Shift+R 强制刷新查看最新效果</p>
+  </div>
+</body>
+</html>
