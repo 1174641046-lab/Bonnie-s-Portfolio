@@ -1665,29 +1665,29 @@ body {
   .intro-video-caption { margin-top: 16px; margin-bottom: 40px; font-size: 11px; }
   .thankyou-section { 
     padding: 80px 20px 60px; 
-    flex-direction: column;
+    flex-direction: column !important;
     gap: 32px;
-    align-items: flex-start;
-  }
-  .thankyou-right {
-    width: 100%;
-  }
-  .thankyou-contact {
-    width: 100%;
+    align-items: center;
   }
   .thankyou-left {
-    width: 100%;
-    align-items: center;
-    text-align: center;
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+    order: 1 !important;
   }
   .thankyou-left p {
     font-size: clamp(24px, 7vw, 40px);
     text-align: center;
     width: 100%;
   }
+  .thankyou-right {
+    width: 100% !important;
+    align-items: center !important;
+    order: 2 !important;
+  }
   .thankyou-text { 
     display: block !important; 
-    text-align: center; 
+    text-align: center !important; 
     font-size: clamp(20px, 6vw, 32px); 
     letter-spacing: 0.05em; 
     width: auto;
@@ -1696,13 +1696,11 @@ body {
     opacity: 1;
     white-space: normal;
   }
-  .thankyou-right {
-    width: 100%;
-    align-items: center;
-    order: 2;
+  .thankyou-contact {
+    align-items: center !important;
   }
-  .thankyou-left {
-    order: 1;
+  .thankyou-contact-item {
+    text-align: center;
   }
   .thankyou-text span { display: inline-block; }
   .custom-cursor { display: none; }
