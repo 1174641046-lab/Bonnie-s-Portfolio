@@ -1559,7 +1559,7 @@ body {
   .folder-container:hover .project-card:nth-child(1) { transform: translateZ(80px) translateX(-260px) translateY(-150px) rotateY(-18deg); }
   .folder-container:hover .project-card:nth-child(2) { transform: translateZ(100px) translateX(0px) translateY(-170px) rotateY(0deg); }
   .folder-container:hover .project-card:nth-child(3) { transform: translateZ(80px) translateX(260px) translateY(-150px) rotateY(18deg); }
-  .thankyou-section { padding: 100px 40px 70px; gap: 50px; }
+  .thankyou-section { padding: 100px 40px 70px; gap: 50px; flex-direction: column; }
   .thankyou-left p,
   .thankyou-text { font-size: clamp(24px, 4.5vw, 64px); }
 }
@@ -1692,10 +1692,10 @@ body {
   .thankyou-right {
     width: 100%;
     align-items: center;
-    order: 1;
+    order: 2;
   }
   .thankyou-left {
-    order: 2;
+    order: 1;
   }
   .thankyou-text span { display: inline-block; }
   .custom-cursor { display: none; }
